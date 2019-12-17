@@ -14,19 +14,26 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/products', function () {
-    return view ('me muestra todos los productos');
-});
-Route::get('/product/{id}', function ($id) {
-    return view ('product_detail'); // muestra el detalle del producto
-});
-Route::post('/admin/product/{id}', function ($id) {
+
+Route::get('/products', 'productsController@index');
+Route::get('/admin/products/add', 'productsController@create');
+Route::get('/products/{id}', 'productsController@show');
+
+
+Route::get('/categories', 'categoriesController@index');
+Route::get('/admin/categories/add', 'categoriesController@create');
+Route::get('/categories/{id}', 'categoriesController@show');
+
+
+
+
+Route::post('/admin/products/{id}', function ($id) {
     return view ('product_detail');//el admin modifica el pto
 });
-Route::get('/admin/product/create', function () {
+Route::get('/admin/products/create', function () {
     return view ('product_detail'); // crea el prod.
 });
-Route::post('/admin/product/create', function () {
+Route::post('/admin/products/create', function () {
     return view ('product_detail');//el admin creo el pto y lo guarda en la bd
 });
 Route::get('/categories', function () {
