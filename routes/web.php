@@ -16,9 +16,10 @@ Route::get('/', function () {
 });
 
 Route::get('/products', 'productsController@index');
-Route::get('/admin/products/add', 'productsController@create');
 Route::get('/products/{id}', 'productsController@show');
 
+Route::get('/admin/products/add', 'productsController@create');
+route::get('/admin/products/edit/{id}', 'productsController@edit');
 
 Route::get('/categories', 'categoriesController@index');
 Route::get('/admin/categories/add', 'categoriesController@create');
