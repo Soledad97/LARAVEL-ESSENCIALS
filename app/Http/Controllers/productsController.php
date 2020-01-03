@@ -11,9 +11,17 @@ class productsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-        { return view ('website.products.index');
-        //
+    public function index(Request $Request)
+        { 
+            
+            $products = Product::paginate(10);
+
+
+            return view ('website.products.index',[
+                'title' => 'Listado de Productos',
+                'products' => $products,
+            ]);
+            
     };
 
     /**
@@ -23,7 +31,8 @@ class productsController extends Controller
      */
     public function create()
     {
-        //
+        return view ('admin.products.create' ,
+        [ 'product' =>  new Product,]);
     }
 
     /**
