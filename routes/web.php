@@ -10,23 +10,68 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// website.index.blade.php muestra el home de la pagina
+Route::get('/', 'WebsiteController@index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// website.product.index.blade.php muestra un listado de productos
+Route::get('/products', 'ProductController@index');  
 
-Route::get('/products', 'productsController@index');
-Route::get('/products/{id}', 'productsController@show');
+// website.product.show.blade.php  muestra el detalle de un producto
+Route::get('/products/{id}', 'ProductController@show'); 
 
-Route::get('/admin/products/add', 'productsController@create');
-route::get('/admin/products/edit/{id}', 'productsController@edit');
+// admin.product.create.blade.php  muestra el formulario para crear un producto
+Route::get('/admin/products/add', 'ProductController@create'); 
+
+// admin.product.edit.blade.php  muestra el formulario para crear un producto
+Route::get('/admin/products/edit/{id}', 'ProductController@edit');
+
+
+
+// website.categories.index.blade.php muestra un listado de categorias
+Route::get('/categories', 'categoriesController@index');  
+
+// website.categories.show.blade.php  muestra el detalle de un categorieo
+Route::get('/categories/{id}', 'categoriesController@show'); 
+
+// admin.categories.create.blade.php  muestra el formulario para crear un categorieo
+Route::get('/admin/categories/add', 'categoriesController@create'); 
+
+// admin.categories.edit.blade.php  muestra el formulario para crear un categorieo
+Route::get('/admin/categories/edit/{id}', 'categoriesController@edit');
+
+
+// website.purchases.index.blade.php muestra un listado de mis compras 
+Route::get('/purchases', 'PurchaseController@index');  
+
+// website.purchases.show.blade.php  muestra el detalle de una compra
+Route::get('/purchases/{id}', 'PurchaseController@show'); 
+
+// admin.purchases.create.blade.php  muestra el formulario para finalizar la compra
+Route::get('/purchases/add', 'PurchaseController@create'); 
+
+
+// website.cart.show.blade.php  muestra el detalle de una compra
+Route::get('/cart', 'CartsController@show'); 
+
+// admin.customer.show.blade.php  muestra el formulario para finalizar la compra
+Route::get('/profile', 'UserController@show'); 
+
+
+
+
+
 
 Route::get('/categories', 'categoriesController@index');
-Route::get('/admin/categories/add', 'categoriesController@create');
+
 Route::get('/categories/{id}', 'categoriesController@show');
 
+Route::get('/admin/categories/add', 'categoriesController@create');
+Route::get('/admin/categories/edit/{id}', 'categoriesController@create');
 
 
+
+
+//no van//
 
 Route::post('/admin/products/{id}', function ($id) {
     return view ('product_detail');//el admin modifica el pto
