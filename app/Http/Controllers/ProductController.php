@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -26,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('product.create', ['categories' => Category::all()]);
+
     }
 
     /**
@@ -36,8 +38,10 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    { 
+        $product = Product::create($request->all());
+
+        return redirect('/products/' . $product->id);
     }
 
     /**
@@ -46,9 +50,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($product)
     {
-        //
+        return view('product.show', ['product' => Product::findOrFail($product)]);
     }
 
     /**
@@ -57,9 +61,12 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($product)
     {
-        //
+        return view('product.edit', [
+            'categories' => Category::all(),
+            'product' => Product::findOrFail($product)
+        ]);
     }
 
     /**
@@ -69,9 +76,11 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $product->update($request->all());
+        return redirect('/products/' . $product->id);
     }
 
     /**
@@ -80,8 +89,12 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $product->delete();
+
+        return redirect('/products');
     }
 }
