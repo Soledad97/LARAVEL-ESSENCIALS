@@ -9,6 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
 */
 // website.index.blade.php muestra el home de la pagina
 Route::get('/', 'WebsiteController@index');
@@ -66,7 +67,18 @@ Route::get('/categories', 'categoriesController@index');
 Route::get('/categories/{id}', 'categoriesController@show');
 
 Route::get('/admin/categories/add', 'categoriesController@create');
+
 Route::get('/admin/categories/edit/{id}', 'categoriesController@create');
+
+
+
+Route::get('/payments', 'paymentsController@index');
+
+Route::get('/payments/{id}', 'paymentsController@show');
+
+Route::get('/admin/payments/add', 'paymentsController@create');
+
+Route::get('/admin/payments/edit/{id}', 'paymentsController@create');
 
 
 

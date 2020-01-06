@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('stock');
             $table->double('price',7,3);
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories');
+            //$table->foreign('category_id')->references('id')->on('categories');
             $table->softDeletes();
             $table->timestamps();
         });
