@@ -51,16 +51,23 @@ Route::get('/purchases/{id}', 'PurchaseController@show');
 Route::get('/purchases/add', 'PurchaseController@create');
 
 
-// website.cart.show.blade.php  muestra el detalle de una compra
-Route::get('/cart', 'CartController@show'); 
+Route::group(['middleware'=>'cart'], function(){
+  // website.cart.show.blade.php  muestra el detalle de una compra
+  Route::get('/cart', 'CartController@index');
 
-// website.cart.create.blade.php muestra la creacion de un carrito
-Route::get('/cart/add', 'CartController@create');
+  // website.cart.create.blade.php muestra la creacion de un carrito
+  Route::post('/cart/add', 'CartController@store');
+
+
+});
+
+
+
 
 // admin.customer.show.blade.php  muestra el formulario para finalizar la compra
 Route::get('/profile', 'UserController@show');
 
-Route::post('/profile', 'UserController@show'); 
+Route::post('/profile', 'UserController@show');
 
 
 
@@ -111,9 +118,6 @@ Route::get('/login', function () {
 });
 Route::get('/profile', function () {
     return view('profile');
-});
-Route::get('/cart', function () {
-    return view('cart'); // me muestra los productos seleccionados para comprar
 });
 Route::post('/cart', function () {
     return view('cart'); // agrego producto al carro

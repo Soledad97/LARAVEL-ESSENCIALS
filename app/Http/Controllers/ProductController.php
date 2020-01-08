@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
 
-        return view('website.product.index', ['products' => Product::all()]);
+        return view('website.products.index', ['products' => Product::all()]);
 
     }
 
@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create', ['categories' => Category::all()]);
+        return view('admin.products.create', ['categories' => Category::all()]);
 
     }
 
@@ -52,7 +52,7 @@ class ProductController extends Controller
      */
     public function show($product)
     {
-        return view('website.product.show', ['product' => Product::findOrFail($product)]);
+        return view('website.products.show', ['product' => Product::findOrFail($product)]);
     }
 
     /**
@@ -63,7 +63,7 @@ class ProductController extends Controller
      */
     public function edit($product)
     {
-        return view('admin.product.edit', [
+        return view('admin.products.edit', [
             'categories' => Category::all(),
             'product' => Product::findOrFail($product)
         ]);
