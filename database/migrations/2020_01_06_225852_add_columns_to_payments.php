@@ -14,7 +14,8 @@ class AddColumnsToPayments extends Migration
     public function up()
     {
         Schema::table('payments', function (Blueprint $table) {
-            //
+            $table->string('method');
+            $table->softDeletes();
         });
     }
 

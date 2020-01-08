@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use app\user;
+use app\order;
 use Illuminate\Http\Request;
 
-class usersController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
+
         return view('website.product.index', ['products' => Product::all()]);
 
     }
@@ -38,11 +38,11 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
+    {
         $product = Product::create($request->all());
 
         return redirect('/products/' . $product->id);
-    }
+            }
 
     /**
      * Display the specified resource.

@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use app\user;
+use app\Cart;
+use app\Order;
 use Illuminate\Http\Request;
 
-class usersController extends Controller
+class cartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class usersController extends Controller
      */
     public function index()
     {
-        //
+        return view('website.Carts.index', ['carts' => Carts::all()]);
     }
 
     /**
