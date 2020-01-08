@@ -53,8 +53,8 @@
   </div>
 </nav>
 
-@yield('content')
 
+@yield('content')
 
 
 
@@ -64,7 +64,7 @@
 
 </body>
 
-
+<footer>
 <div class="container-fluid text-center text-md-left">
   <div class="row">
     <hr class="clearfix w-100 d-md-none pb-3">
@@ -105,4 +105,5 @@
   </div>
  </div>
 
+ </footer>
 </html>

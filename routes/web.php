@@ -57,7 +57,7 @@ Route::get('/cart', 'CartsController@show');
 // admin.customer.show.blade.php  muestra el formulario para finalizar la compra
 Route::get('/profile', 'UserController@show'); 
 
-
+Route::post('/profile', 'UserController@show'); 
 
 
 

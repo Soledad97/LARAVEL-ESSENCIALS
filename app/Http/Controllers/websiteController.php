@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class websiteController extends Controller
 {
@@ -13,7 +14,7 @@ class websiteController extends Controller
      */
     public function index()
     {
-        //
+        return view('website.index', ['products' => Product::all()]);
     }
 
     /**
@@ -24,6 +25,7 @@ class websiteController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -45,7 +47,7 @@ class websiteController extends Controller
      */
     public function show($id)
     {
-        //
+      // 
     }
 
     /**
