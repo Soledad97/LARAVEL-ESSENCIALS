@@ -25,7 +25,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('payment_id')->references('id')->on('payments');
 
             $table->unsignedBigInteger('cart_id');
-            $table->foreign('cart_id')->references('id')->on('cart');
+            $table->foreign('cart_id')->references('id')->on('carts');
 
             $table->timestamps();
         });
@@ -38,6 +38,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ordes');
+        Schema::dropIfExists('orders');
     }
 }
