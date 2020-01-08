@@ -19,8 +19,14 @@ class CreateOrdersTable extends Migration
             $table->string('shipping_type');
             $table->float('total');
             $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('status');
+
             $table->unsignedBigInteger('payment_id');
+            $table->foreign('payment_id')->references('id')->on('payments');
+
             $table->unsignedBigInteger('cart_id');
+            $table->foreign('cart_id')->references('id')->on('cart');
+
             $table->timestamps();
         });
     }
