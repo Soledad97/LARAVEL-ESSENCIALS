@@ -12,7 +12,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'calification'=> $faker->numberBetween(1,5),
         'imagen'=>$faker->imageUrl($width = 640, $height = 480),
         'price'=> $faker->randomFloat(2,999,99999),
-        'stock'=>
+        
     
 
     ];
