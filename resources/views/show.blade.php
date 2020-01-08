@@ -2,9 +2,6 @@
 
 
 
-
-
-
 @section('content')
 
 <h1>listado de productos</h1>
@@ -12,15 +9,6 @@
      <h3>{{ $products ->name}}</h3>
      <img src ="{{ $product ->image }}" width ="200">
 @endforeach
-
-
-
-
-
-
-
-
-
 
 
 
