@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use app\user;
+use App\Cart;
+use App\Order;
 use Illuminate\Http\Request;
 
-class usersController extends Controller
+class cartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,18 +14,11 @@ class usersController extends Controller
      */
     public function index()
     {
-        //
+        return view('website.carts.index', [
+          'cart' => session('cart')
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,30 +28,9 @@ class usersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+dd($request->all());
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
