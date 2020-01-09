@@ -66,7 +66,7 @@ Route::get('/categories/{id}', 'CategoryController@show');
 
 Route::get('/admin/categories/add', 'CategoryController@create');
 
-Route::get('/admin/categories/edit/{id}', 'CategoryController@create');
+Route::get('/admin/categories/{id}/edit', 'CategoryController@create');
 
 
 /* 
