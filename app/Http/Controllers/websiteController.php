@@ -17,6 +17,8 @@ class websiteController extends Controller
         return view('website.index', ['products' => Product::all()]);
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *

@@ -69,6 +69,16 @@ class ProductController extends Controller
         ]);
     }
 
+/**FUNCION ADD DEL LADO DEL ADMIN */
+    public function add($product)
+    {
+        return view('admin.products.add', [
+            'categories' => Category::all(),
+            'product' => Product::findOrFail($product)
+        ]);
+    }
+
+
     /**
      * Update the specified resource in storage.
      *
