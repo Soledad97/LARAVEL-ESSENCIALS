@@ -125,3 +125,7 @@ Route::post('/cart', function () {
 Route::post('/cart/buy', function () {
     return view('order'); // compro y toma los datos para la orden de compra
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
