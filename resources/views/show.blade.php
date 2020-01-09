@@ -2,7 +2,10 @@
 
 
 
-@section('content')
+@section('content')   
+
+
+
 
 <h1>listado de productos</h1>
 @foreach($products as $product)

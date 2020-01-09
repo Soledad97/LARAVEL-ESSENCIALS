@@ -13,7 +13,7 @@ class CreateCartProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cart__products', function (Blueprint $table) {
+        Schema::create('cart_products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('product_id')->nullable();
             $table->foreign('product_id')->references('id')->on('products');
@@ -32,6 +32,6 @@ class CreateCartProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cart__products');
+        Schema::dropIfExists('cart_products');
     }
 }
