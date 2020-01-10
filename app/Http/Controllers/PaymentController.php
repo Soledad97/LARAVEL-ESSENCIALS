@@ -1,11 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use app\order;
+
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class PaymentController extends Controller
 {
+
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,8 +19,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-      return view('website.orders.index', ['orders' => order::all()]);
-
+        //
     }
 
     /**
@@ -24,8 +29,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-      return view('website.orders.create', ['orders' => order::all()]);
-
+        //
     }
 
     /**

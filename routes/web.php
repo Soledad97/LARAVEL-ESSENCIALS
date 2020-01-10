@@ -29,14 +29,14 @@ Route::get('/admin/products/edit/{id}', 'ProductController@edit');
 
 
 
-// website.purchases.index.blade.php muestra un listado de mis compras
-Route::get('/purchases', 'OrderController@index');
+// website.orders.index.blade.php muestra un listado de mis compras
+Route::get('/orders', 'OrderController@index');
 
-// website.purchases.show.blade.php  muestra el detalle de una compra
-Route::get('/purchases/{id}', 'OrderController@show');
+// website.orders.show.blade.php  muestra el detalle de una compra
+Route::get('/orders/{id}', 'OrderController@show');
 
-// admin.purchases.create.blade.php  muestra el formulario para finalizar la compra
-Route::get('/purchases/add', 'OrderController@create');
+// admin.orders.create.blade.php  muestra el formulario para finalizar la compra
+Route::get('/orders/add', 'OrderController@create');
 
 
 Route::group(['middleware'=>'cart'], function(){
@@ -69,7 +69,7 @@ Route::get('/admin/categories/add', 'CategoryController@create');
 Route::get('/admin/categories/{id}/edit', 'CategoryController@create');
 
 
-/* 
+/*
 Route::get('/payments', 'paymentsController@index');
 
 Route::get('/payments/{id}', 'paymentsController@show');

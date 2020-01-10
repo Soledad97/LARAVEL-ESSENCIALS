@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use app\order;
+use app\user;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class usersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-      return view('website.orders.index', ['orders' => order::all()]);
-
+        //
     }
 
     /**
@@ -24,8 +23,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-      return view('website.orders.create', ['orders' => order::all()]);
-
+        //
     }
 
     /**
