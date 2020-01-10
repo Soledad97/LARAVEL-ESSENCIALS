@@ -11,7 +11,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
-use App\Category;
+use App\ProductPhoto;
 
 class ProductPhotoController extends Controller
 {
@@ -35,7 +35,8 @@ class ProductPhotoController extends Controller
      */
     public function create()
     {
-        return view('admin.productsphotos.create', ['categories' => Category::all()]);
+        return view('admin.productsphotos.create', ['products' => product::all(
+        )]);
 
     }
 
@@ -47,45 +48,25 @@ class ProductPhotoController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::create($request->all());
+        $photo = ProductPhoto::create($request->all());
+        $product = Product::findOrFail($request->product_id);
 
         return redirect('/products/' . $product->id);
-            }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show($product)
-    {
-        return view('website.productsphotos.show', ['productphoto' => Productphoto::findOrFail($product)]);
     }
 
+    
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit($product)
+    public function edit($photo)
     {
         return view('admin.productsphotos.edit', [
-            'categories' => Category::all(),
-            'productsphotos' => ProductPhoto::findOrFail($product)
+            'photo' => ProductPhoto::findOrFail($photo)
         ]);
     }
-
-/**FUNCION ADD DEL LADO DEL ADMIN */
-    public function add($product)
-    {
-        return view('admin.products.add', [
-            'categories' => Category::all(),
-            'product' => Product::findOrFail($product)
-        ]);
-    }
-
 
     /**
      * Update the specified resource in storage.
@@ -96,8 +77,9 @@ class ProductPhotoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product->update($request->all());
+        $photo = ProductPhoto::find($id);
+        $photo->update($request->all());
+        $product = Product::findOrFail($request->product_id);
         return redirect('/products/' . $product->id);
     }
 
@@ -109,9 +91,9 @@ class ProductPhotoController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
+        $photo = ProductPhoto::findOrFail($id);
 
-        $product->delete();
+        $photo->delete();
 
         return redirect('/products');
     }

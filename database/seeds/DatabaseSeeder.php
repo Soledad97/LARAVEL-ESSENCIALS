@@ -11,9 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //DB::table('categories')->truncate();
-        //DB::table('products')->truncate();
-
         $this->call(CategorySeeder::class);
         $this->call(ProductSeeder::class);
     }

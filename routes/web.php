@@ -50,6 +50,24 @@ Route::group(['middleware'=>'cart'], function(){
 });
 
 
+// RUTAS DE  PRODUCTOS FOTOS // 
+
+
+// website.index.blade.php muestra el home de la pagina
+Route::get('/', 'WebsiteController@index');
+
+// website.product.index.blade.php muestra un listado de productos
+Route::get('/productsPhotos', 'ProductPhotoController@index');
+
+// website.product.show.blade.php  muestra el detalle de un producto
+Route::get('/productsPhotos/{id}', 'ProductPhotoController@show');
+
+// admin.product.create.blade.php  muestra el formulario para crear un producto
+Route::get('/admin/productsPhotos/add', 'ProductPhotoController@create');
+
+// admin.product.edit.blade.php  muestra el formulario para editar un producto
+Route::get('/admin/productsPhotos/edit/{id}', 'ProductPhotoController@edit');
+
 
 
 // admin.customer.show.blade.php  muestra el formulario para finalizar la compra
