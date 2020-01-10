@@ -27,25 +27,6 @@ Route::get('/admin/products/add', 'ProductController@create');
 Route::get('/admin/products/edit/{id}', 'ProductController@edit');
 
 
-// RUTAS DE  PRODUCTOS FOTOS // 
-
-
-// website.index.blade.php muestra el home de la pagina
-Route::get('/', 'WebsiteController@index');
-
-// website.product.index.blade.php muestra un listado de productos
-Route::get('/productsPhotos', 'ProductPhotoController@index');
-
-// website.product.show.blade.php  muestra el detalle de un producto
-Route::get('/productsPhotos/{id}', 'ProductPhotoController@show');
-
-// admin.product.create.blade.php  muestra el formulario para crear un producto
-Route::get('/admin/productsPhotos/add', 'ProductPhotoController@create');
-
-// admin.product.edit.blade.php  muestra el formulario para editar un producto
-Route::get('/admin/productsPhotos/edit/{id}', 'ProductPhotoController@edit');
-
-
 
 
 // website.purchases.index.blade.php muestra un listado de mis compras
@@ -88,7 +69,7 @@ Route::get('/admin/categories/add', 'CategoryController@create');
 Route::get('/admin/categories/{id}/edit', 'CategoryController@create');
 
 
-
+/* 
 Route::get('/payments', 'paymentsController@index');
 
 Route::get('/payments/{id}', 'paymentsController@show');
@@ -96,7 +77,7 @@ Route::get('/payments/{id}', 'paymentsController@show');
 Route::get('/admin/payments/add', 'paymentsController@create');
 
 Route::get('/admin/payments/edit/{id}', 'paymentsController@create');
-
+ */
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

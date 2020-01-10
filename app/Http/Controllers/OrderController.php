@@ -13,7 +13,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+      return view('website.orders.index', ['orders' => order::all()]);
+
     }
 
     /**
@@ -23,7 +24,8 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+      return view('website.orders.create', ['orders' => order::all()]);
+
     }
 
     /**
