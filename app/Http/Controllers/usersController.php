@@ -1,17 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use app\user;
 use Illuminate\Http\Request;
 
-class PaymentController extends Controller
+class usersController extends Controller
 {
-
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
-
     /**
      * Display a listing of the resource.
      *
