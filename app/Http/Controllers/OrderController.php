@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use app\order;
+use app\payment;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -24,19 +25,21 @@ class OrderController extends Controller
      */
     public function create()
     {
-      return view('website.orders.create', ['orders' => order::all()]);
-
+      return view('admin.orders.create', []);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+      $order = Order::create($request->all());
+
+      return redirect('/order/' . $order->id);
     }
 
     /**
@@ -45,9 +48,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($order)
     {
-        //
+        return view('website.order.show', ['order' => Order::findOrFail($order)]);
     }
 
     /**
@@ -56,9 +59,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($order)
     {
-        //
+        return view('website.order.show', ['order' => Order::findOrFail($order)]);
     }
 
     /**
@@ -68,9 +71,11 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $order)
     {
-        //
+      $order = Order::find($id);
+      $order->update($request->all());
+      return redirect('/orders/' . $order->id);
     }
 
     /**
@@ -79,8 +84,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($order)
     {
-        //
+      $order = Order::findOrFail($order);
+      $order->delete();
+      return redirect('/orders');
     }
 }
