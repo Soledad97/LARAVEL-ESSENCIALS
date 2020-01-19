@@ -13,10 +13,16 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
+    /*agregamos el request*/ 
     {
 
-        return view('website.products.index', ['products' => Product::all()]);
+        $products = Product::paginate(10);
+ 
+        return view('website.products.index',
+        ['title'=>'listado de productos',
+         'products' => $products,
+         ]);
 
     }
 
@@ -27,7 +33,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create', ['categories' => Category::all()]);
+        return view('admin.products.create', 
+        
+        ['categories' => Category::all(), 'product' => new Product]);
 
     }
 
@@ -39,10 +47,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate ($request,
+        [
+        'title' => 'required',
+        'stock' => 'required',
+        'price' => 'required',
+        'image' => 'requiered',
+        ]);
+        
+        
         $product = Product::create($request->all());
 
         return redirect('/products/' . $product->id);
-            }
+    }
 
     /**
      * Display the specified resource.
@@ -78,6 +95,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate ($request,
+        [
+        'title' => 'required',
+        'stock' => 'required',
+        'price' => 'required',
+        'image' => 'requiered',
+        ]);
+        
+        
+        
         $product = Product::find($id);
         $product->update($request->all());
         return redirect('/products/' . $product->id);

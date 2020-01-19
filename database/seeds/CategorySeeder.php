@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CategorySeeder extends Seeder
 {
@@ -11,11 +12,14 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->insert([
-            'name' => 'cremas'],
-        [
-            'name' => 'tonicos'],
-        [
-            'name' => 'jabones']);
+        $categories = [
+            ['name' => 'cremas'],
+            [ 'name' => 'tonicos'],
+            [ 'name' => 'jabones']
+        ];
+        foreach ($categories as $category) {
+            DB::table('categories')->insert($category);
+        }
+
     }
 }

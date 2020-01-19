@@ -14,7 +14,7 @@ class websiteController extends Controller
      */
     public function index()
     {
-        return view('website.index', ['products' => Product::all()]);
+        return view('website.index', ['products' => Product::all(), 'title'=> 'home']);
     }
 
 
