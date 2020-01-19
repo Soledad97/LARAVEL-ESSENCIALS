@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
+use App\Category;
 
 class websiteController extends Controller
 {
@@ -14,7 +14,15 @@ class websiteController extends Controller
      */
     public function index()
     {
-        return view('website.index', ['products' => Product::all()]);
+        $products = [
+            [
+                "name" => "P1",
+            ],
+            [
+                "name" => "P2",
+            ],
+        ];
+        return view('website.index', ['products' => $products]);
     }
 
 
