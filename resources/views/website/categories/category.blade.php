@@ -43,11 +43,11 @@
 
 <div class="container">
         <p class="text-muted lead text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id nulla quos distinctio commodi soluta aliquam.</p>
-    @foreach($producto->chunk(4) as $proChunk)
+    @foreach($productos as $producto)
 
       <div class="row products">
 
-          @foreach($proChunk as $product)
+          @foreach($productos as $producto)
 
             <div class="col-md-3 col-sm-4">
                 <div class="product">
