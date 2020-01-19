@@ -36,6 +36,7 @@ Route::get('/admin/products/', 'ProductController@destroy');
 
 
 
+<<<<<<< HEAD
 //ORDER
 
 // website.orders.index.blade.php muestra un listado de mis compras
@@ -54,6 +55,16 @@ Route::get('/orders/{id}', 'OrderController@show');
 Route::get('/admin/orders/', 'OrderController@destroy');
 
 
+=======
+// website.purchases.index.blade.php muestra un listado de mis compras
+Route::get('/purchases', 'OrderController@index');
+
+// website.purchases.show.blade.php  muestra el detalle de una compra
+Route::get('/purchases/{id}', 'OrderController@show');
+
+// admin.purchases.create.blade.php  muestra el formulario para finalizar la compra
+Route::get('/purchases/add', 'OrderController@create');
+>>>>>>> 0c99973ffaaf1beceb21890cc101bdf2dac20b47
 
 
 //CARRITO
@@ -98,7 +109,7 @@ Route::get('/admin/categories/add', 'CategoryController@create');
 Route::get('/admin/categories/{id}/edit', 'CategoryController@create');
 
 
-/*
+/* 
 Route::get('/payments', 'paymentsController@index');
 
 Route::get('/payments/{id}', 'paymentsController@show');
