@@ -37,6 +37,11 @@ dd($request->all());
     }
 
 
+    public function edit($cart)
+    {
+        return view ('admin.carts.edit', ['cart' => Cart::findOrFail($cart)]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -57,7 +62,7 @@ dd($request->all());
      */
     public function destroy($id)
     {
-        //
+        //el carro se destruye?
     }
 }
 

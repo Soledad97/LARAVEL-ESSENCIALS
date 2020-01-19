@@ -19,7 +19,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        return view('website.Payments.index', ['payments' => Payment::all()]);
     }
 
     /**
@@ -29,7 +29,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        return view('payments.create', ['payments' => Payment::find()]);
     }
 
     /**
@@ -40,7 +40,9 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $payment = Payment::create($request->all());
+
+      return redirect('/payments/' . $payment->id);
     }
 
     /**
@@ -49,9 +51,9 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($payment)
     {
-        //
+        return view('website.payment.show', ['payment' => Payment::findOrFail($payment)]);
     }
 
     /**
@@ -60,10 +62,11 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($payment)
     {
-        //
+        return view ('admin.payments.edit', ['payment' => Payment::findOrFail($payment)]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -72,9 +75,11 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $payment)
     {
-        //
+      $payment = Payment::find($id);
+      $payment->update($request->all());
+      return redirect('/payments/' . $payment->id);
     }
 
     /**
@@ -83,8 +88,10 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($payment)
     {
-        //
+      $payment = Payment::findOrFail($payment);
+      $payment->delete();
+      return redirect('/payments');
     }
 }
