@@ -19,9 +19,9 @@ public function payment () {
 return $this->belongsTo('App\Payment');
 }
 
-//public funtion carts() {
-//return $this->belongsTo('App\Cart'):
-//}
+public function carts() {
+return $this->belongsTo('App\Cart'):
+}
 
 //como la relacion con status???
 
