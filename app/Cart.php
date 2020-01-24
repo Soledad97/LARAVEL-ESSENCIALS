@@ -19,7 +19,7 @@ class Cart extends Model
 }
   public function cart_product(){
 
-    return $this->belongsToMany('App\cart_product);
+    return $this->belongsToMany('App\Product);
 }
 
 }
