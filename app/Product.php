@@ -17,7 +17,7 @@ class Product extends Model
 
     public function cart_product(){
 
-        return $this->belongsToMany('App\Cart');
+        return $this->belongsToMany('App\Product');
 
     }
     public function product_user(){

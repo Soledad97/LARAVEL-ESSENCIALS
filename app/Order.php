@@ -9,13 +9,13 @@ class Order extends Model
     protected $fillable =
     ['shipping_cost','shipping_type','total','status_id','payment_id','cart_id'];
 
-    public function users () {
+    public function user () {
 
         return $this->belongsTo('App\User');
     }
 
 
-public function payments () {
+public function payment () {
 return $this->belongsTo('App\Payment');
 }
 
