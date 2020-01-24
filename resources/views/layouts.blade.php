@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>listado de productos</title>
+    <title>@yield('title') Essencials</title>
+    
 
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -69,7 +70,7 @@
   <div class="row">
     <hr class="clearfix w-100 d-md-none pb-3">
     <div class="col-md-6 mb-md-0 mb-6">
-      <h5 class:"links"><u>Links</u></h5>
+      <h5 class="links"><u>Links</u></h5>
       <ul class="links">
         <li>
           <a href="index.php#quienessomos">Nosotros</a>
