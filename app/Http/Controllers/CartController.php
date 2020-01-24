@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Cart;
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 
 class cartController extends Controller
@@ -35,7 +36,7 @@ class cartController extends Controller
     {
 dd($request->all());
     }
-    
+
 
 
     public function edit($cart)
