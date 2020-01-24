@@ -13,13 +13,13 @@ class Cart extends Model
     return $this->hasMany('App\Order');
     }
 
-  public function users(){
+  public function user(){
 
     return $this->belongsTo('App\User');  //preguntar
 }
   public function cart_product(){
 
-    return $this->belongsToMany('App\cart_product);
+    return $this->belongsToMany('App\Product);
 }
 
 }

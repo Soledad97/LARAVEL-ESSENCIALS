@@ -8,7 +8,7 @@ class Product extends Model
 {
     protected $fillable = ['name','description','calification','stock','price','category_id','image'];
 
-    public function category (){
+    public function categories (){
 
         return $this->belongsTo('App\Category');
 
@@ -17,12 +17,12 @@ class Product extends Model
 
     public function cart_product(){
 
-        return $this->belongsToMany('App\products');
+        return $this->belongsToMany('App\Cart');
 
     }
     public function product_user(){
 
       return $this->belongsToMany('App\User');
     
- 
+ }
 }
