@@ -31,30 +31,25 @@ Route::get('/products/{id}', 'ProductController@show');
 
 // admin.product.edit.blade.php  muestra el formulario para editar un producto
 Route::get('/admin/products/{id}/edit', 'ProductController@edit');
-
+Route::patch('/admin/products/{id}', 'ProductController@update');
 //admin.product.destroy.blade.php elimina el producto
-Route::get('/admin/products/', 'ProductController@destroy');
-
-
+Route::delete('/admin/products/', 'ProductController@destroy');
 
 //ORDER
 
 // website.orders.index.blade.php muestra un listado de mis compras
 Route::get('/orders', 'OrderController@index');
-
-// admin.orders.create.blade.php  muestra el formulario para realizar la compra
-Route::get('/orders/add', 'OrderController@create');
-
-//website.orders.store.blade.php sube los datos que completo el usuario en la orden para poder hacer la la compra
-Route::post('/orders/add', 'OrderController@store');
-
 // website.orders.show.blade.php  muestra el detalle de una compra
 Route::get('/orders/{id}', 'OrderController@show');
-
+// admin.orders.create.blade.php  muestra el formulario para realizar la compra
+Route::get('/orders/add', 'OrderController@create');
+//website.orders.store.blade.php sube los datos que completo el usuario en la orden para poder hacer la compra
+Route::post('/orders/add', 'OrderController@store');
+//customer.orders.edit.blade.php muestra los cambios realizados en la orden.
+Route::get('/orders', 'OrderController@edit');
+Route::patch('/orders', 'OrderController@update');
 //admin.order.destroy.blade.php elimina el producto
-Route::get('/admin/orders/', 'OrderController@destroy');
-
-
+Route::delete('/admin/orders/', 'OrderController@destroy');
 
 
 //CARRITO
@@ -71,7 +66,7 @@ Route::post('/cart/add', 'CartController@store');
 Route::get('/cart', 'CartController@edit');
 
 //website.cart.update.blade.php manda los cambios editados
-Route::get('/cart', 'CartController@)update');
+Route::patch('/cart', 'CartController@update');
 
 //como pago el carro
 
@@ -96,18 +91,25 @@ Route::get('/categories/{id}', 'CategoryController@show');
 
 Route::get('/admin/categories/add', 'CategoryController@create');
 
-Route::get('/admin/categories/{id}/edit', 'CategoryController@create');
+Route::post('/admin/categories/add', 'CategoryController@store');
 
+Route::get('/admin/categories/{id}/edit', 'CategoryController@edit');
 
-/*
-Route::get('/payments', 'paymentsController@index');
+Route::patch('/admin/categories/{id}', 'CategoryController@update');
 
-Route::get('/payments/{id}', 'paymentsController@show');
+Route::delete('/admin/categories/{id}', 'CategoryController@destroy');
 
-Route::get('/admin/payments/add', 'paymentsController@create');
+Route::get('/payments', 'PaymentController@index');
+Route::get('/payments/{id}', 'PaymentController@show');
 
-Route::get('/admin/payments/edit/{id}', 'paymentsController@create');
- */
-Auth::routes();
+//::group(['prefix => admin'], function(){
+
+Route::get('/admin/payments/add', 'PaymentController@create');
+Route::post('/admin/payments/add', 'PaymentController@store');
+Route::get('/admin/payments/{id}/edit', 'PaymentController@edit');
+Route::patch('/admin/payments/{id}', 'PaymentController@update');
+Route::delete('/admin/payments/{id}', 'PaymentController@destroy');
+//)};
+  Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
