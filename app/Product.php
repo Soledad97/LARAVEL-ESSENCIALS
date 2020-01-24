@@ -14,9 +14,13 @@ class Product extends Model
 
     }
 
-    public function productsPhotos (){
+    public function cart_product(){
 
-        return $this->hasMany('App\productsPhotos');
+        return $this->belongsToMany('App\products');
 
+    }
+    public function product_user(){
+
+      return $this->belongsToMany('App\User');
     }
 }

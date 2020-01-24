@@ -10,12 +10,16 @@ class Cart extends Model
 
   public function orders (){
 
-      return $this->hasMany('App\Order');
-
-      //public function users(){
-      //return $this->belongsTo('App\User');
-      //}
-      //como hago la relacion con cart_product???
+    return $this->hasMany('App\Order');
     }
+
+  public function users(){
+
+    return $this->belongsTo('App\User');
+}
+  public function cart_product(){
+
+    return $this->belongsToMany('App\cart_product);
+}
 
 }

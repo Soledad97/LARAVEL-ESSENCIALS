@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Payment;
 
 class PaymentController extends Controller
 {
 
   public function __construct()
   {
-      $this->middleware('auth');
+    //  $this->middleware('auth');
   }
 
     /**
@@ -29,8 +30,16 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        return view('payments.create', ['payments' => Payment::find()]);
+
+
+      return view('admin.payments.create', ['payment' => new Payment,'method' => "post"]);
+        //return view('admin.payments.create', ['payment' => new Payment]);
+        //  return view('.admin.create', [
+        //    'payment' => New Payment,
+        //  ]);
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -40,6 +49,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
+      dd($request->all());
       $payment = Payment::create($request->all());
 
       return redirect('/payments/' . $payment->id);

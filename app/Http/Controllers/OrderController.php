@@ -25,7 +25,10 @@ class OrderController extends Controller
      */
     public function create()
     {
-      return view('admin.orders.create', []);
+      //return view('admin.orders.create', [$]);
+      return view('/customer/create', [
+        'order' => New Order,
+      ]);
     }
 
     /**
@@ -35,11 +38,27 @@ class OrderController extends Controller
 
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function store(Request $request) //entra la peticion entran los datos del formulario
     {
+      // entra el validador y se le indica como debe validar lo que ingresa.
+      // el validate automaticamente, si no lo hace, no sigue el proceso, sino que redirige a la pagina de donde vino, que normalmente es la pagina del formulario.
+      $this->validate($request, [
+        'shipping_cost' => 'required',
+        'shipping_type' => 'required',
+        'total' => 'required',
+        'status_id' => 'required',
+        'payment_id' => 'required',
+        'cart_id' => 'required',
+      ]);
+      // invoco al modelo, le digo que voy a crear en la bese de datos un nuevo registro con todos los datos de ese array (all) los datos que indique el modelo.
       $order = Order::create($request->all());
 
       return redirect('/order/' . $order->id);
+
+      // return redirect()->back();  si quiero volver al formulario para seguir cargando productos.
+
+      // return redirect('/orders');   si quiero ir al listado de las ordenes creadas.
     }
 
     /**
@@ -59,9 +78,13 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($order)
+    public function edit($id)
     {
-        return view('website.order.show', ['order' => Order::findOrFail($order)]);
+            //return view('website.order.edit', ['order' => Order::findOrFail($order)]);
+        $order = Order::findOrFail($id)
+        return view('admin.orders.edit', [
+          'order' => $order,
+        ]);
     }
 
     /**
@@ -71,8 +94,17 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $order)
+    public function update(Request $request, $id)
     {
+      $this->validate($request, [
+        'shipping_cost' => 'required',
+        'shipping_type' => 'required',
+        'total' => 'required',
+        'status_id' => 'required',
+        'payment_id' => 'required',
+        'cart_id' => 'required',
+      ]);
+      
       $order = Order::find($id);
       $order->update($request->all());
       return redirect('/orders/' . $order->id);

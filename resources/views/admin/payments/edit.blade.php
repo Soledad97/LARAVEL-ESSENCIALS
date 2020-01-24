@@ -1,14 +1,12 @@
-@extends('view')
-
 @section('')
 
   <div class="container">
     <div class="row">
       <div class="col">
-        <h1> Crear Orden de Compra </h1>
-        @include('admin.orders.form', [
+        <h1> Editar Medios de Pago</h1>
+        @include('admin.payments.form', [
           'method' => 'post',
-          'url' => '/orders', //  '/orders/add'  esta es mi ruta 
+          'url' => '/payments/'. $payment->id //   '/admin/payments/add' esta es mi ruta
         ])
 
 
