@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 use App\Product;
 
 class websiteController extends Controller
@@ -14,7 +15,10 @@ class websiteController extends Controller
      */
     public function index()
     {
-        return view('website.index', ['products' => Product::all()]);
+        $products = Product::all();
+        
+        //va a entrar a website ->carpeta products y muestra lo q contiene el index de  producto ('website.index')// 
+        return view('website.products.index', ['products' => $products]);
     }
 
 

@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['name','description','calification','stock','price','category_id'];
+    protected $fillable = ['name','description','calification','stock','price','category_id','image'];
 
     public function category (){
 
         return $this->belongsTo('App\Category');
 
     }
+
 
     public function cart_product(){
 
@@ -22,5 +23,6 @@ class Product extends Model
     public function product_user(){
 
       return $this->belongsToMany('App\User');
-    }
+    
+ 
 }

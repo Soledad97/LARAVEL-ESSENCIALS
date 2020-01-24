@@ -12,7 +12,8 @@
 
 */
 // website.index.blade.php muestra el home de la pagina
-Route::get('/', 'WebsiteController@index');
+Route::get('/', 'websiteController@index');
+
 
 //PRODUCTOS
 
