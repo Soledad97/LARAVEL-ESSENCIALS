@@ -82,7 +82,7 @@ class OrderController extends Controller
     public function edit($id)
     {
             //return view('website.order.edit', ['order' => Order::findOrFail($order)]);
-        $order = Order::findOrFail($id)
+        $order = Order::findOrFail($id);
         return view('admin.orders.edit', [
           'order' => $order,
         ]);
