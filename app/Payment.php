@@ -9,8 +9,6 @@ class Payment extends Model
   protected $fillable = ['method'];
 
   public function orders(){
-
-      return $this->belongsTo('App\Order');
-
+    return $this->belongsTo('App\Order');
   }
 }
