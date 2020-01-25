@@ -13,7 +13,7 @@ class Cart extends Model
     return $this->hasMany('App\Order');
     }
 
-  public function users(){
+  public function user(){
 
     return $this->belongsTo('App\User');  //preguntar
 }

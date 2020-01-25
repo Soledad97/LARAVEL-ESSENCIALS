@@ -41,11 +41,11 @@ class User extends Authenticatable
 //return $this->hasMany('App\Cart');
 //}
 //como hago la reclacion con product_user???
-    public function user (){
+    public function cart (){
       return $this->belongsTo('App\Cart');
     }
 
     public function product_user(){
-        return $this->belongsToMany ('App\product')
+        return $this->belongsToMany('App\product')
     }
 }

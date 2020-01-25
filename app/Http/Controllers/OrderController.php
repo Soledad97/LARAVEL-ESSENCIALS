@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use app\order;
-use app\payment;
+use App\Order;
+use App\Payment;
+ 
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -104,7 +105,7 @@ class OrderController extends Controller
         'payment_id' => 'required',
         'cart_id' => 'required',
       ]);
-      
+
       $order = Order::find($id);
       $order->update($request->all());
       return redirect('/orders/' . $order->id);

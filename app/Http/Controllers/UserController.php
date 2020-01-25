@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use app\user;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -48,7 +48,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
