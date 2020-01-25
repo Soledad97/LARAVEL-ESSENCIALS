@@ -37,11 +37,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function cart (){
+    public function cart(){
       return $this->belongsTo('App\Cart');
     }
 
-    public function product_user(){
-        return $this->belongsToMany ('App\Product')
+    public function products(){
+        return $this->belongsToMany ('App\Product');
     }
 }
