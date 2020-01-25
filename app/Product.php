@@ -18,9 +18,4 @@ class Product extends Model
     public function user(){
         return $this->belongsToMany('App\User');
     }
-    public function product_user(){
-
-      return $this->belongsToMany('App\User');
-
- }
 }
