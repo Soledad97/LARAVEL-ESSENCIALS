@@ -46,6 +46,6 @@ class User extends Authenticatable
     }
 
     public function product_user(){
-        return $this->belongsToMany('App\product')
+        return $this->belongsToMany ('App\Product')
     }
 }

@@ -11,16 +11,16 @@ class Order extends Model
 
     public function user () {
 
-        return $this->belongsTo('App\Cart');
+        return $this->belongsTo('App\User');
     }
-//o en  los parentesis va User::class???
+
 
 public function payment () {
 return $this->belongsTo('App\Payment');
 }
 
 public function carts() {
-return $this->belongsTo('App\Cart'):
+return $this->belongsTo('App\Cart'); 
 }
 
 //como la relacion con status???
