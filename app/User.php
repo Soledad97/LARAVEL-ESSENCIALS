@@ -36,17 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-<<<<<<< HEAD
 //la relacion es con order o con cart??
 // public function carts(){
 //return $this->hasMany('App\Cart');
 //}
 //como hago la reclacion con product_user???
     public function cart (){
-=======
-
-    public function cart(){
->>>>>>> 0ae41d5d0cb104d3d13268cc1c48b36a323493d0
       return $this->belongsTo('App\Cart');
     }
 

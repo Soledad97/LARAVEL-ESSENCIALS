@@ -89,15 +89,18 @@ Route::get('/categories', 'CategoryController@index');
 
 Route::get('/categories/{id}', 'CategoryController@show');
 
-Route::get('/admin/categories/add', 'CategoryController@create');
+Route::group(['prefix'=> 'admin'], function(){
 
-Route::post('/admin/categories/add', 'CategoryController@store');
+Route::get('/categories/add', 'CategoryController@create');
 
-Route::get('/admin/categories/{id}/edit', 'CategoryController@edit');
+Route::post('/categories/add', 'CategoryController@store');
 
-Route::patch('/admin/categories/{id}', 'CategoryController@update');
+Route::get('/categories/{id}/edit', 'CategoryController@edit');
 
-Route::delete('/admin/categories/{id}', 'CategoryController@destroy');
+Route::patch('/categories/{id}', 'CategoryController@update');
+
+Route::delete('/categories/{id}', 'CategoryController@destroy');
+});
 
 Route::get('/payments', 'PaymentController@index');
 Route::get('/payments/{id}', 'PaymentController@show');
