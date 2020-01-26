@@ -11,108 +11,47 @@
 |
 
 */
-// website.index.blade.php muestra el home de la pagina
-Route::get('/', 'websiteController@index');
+Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
+  // tablas : views admin.index.blade.php
+  Route::get('address', 'AddressController@index');
+  Route::get('cart', 'CartController@index');
+  Route::get('category', 'CategoryController@index');
+  Route::get('payment', 'PaymentController@index');
+  Route::get('photo', 'PhotoController@index');
+  Route::get('product', 'ProductController@index');
+  Route::get('purchase', 'PurchasesController@index');
+  Route::get('role', 'RoleController@index');
+  Route::get('user', 'UserController@index');
 
+  //formularios : views admin.create.blade.php
+  Route::get('category/add', 'CategoryController@create');
+  Route::get('role/add', 'RoleController@create');
+  Route::get('payment/add', 'PaymentController@create');
+  Route::get('product/add', 'ProductController@create');
 
-//PRODUCTOS
+  //formularios Controller store
+  Route::post('category/add', 'CategoryController@store');
+  Route::post('role/add', 'RoleController@store');
+  Route::post('payment/add', 'PaymentController@store');
+  Route::post('product/add', 'ProductController@store');
 
-// website.product.index.blade.php muestra un listado de productos
-Route::get('/products', 'ProductController@index');
+  //formularios views admin.edit.blade.php
+  Route::get('category/{id}/edit', 'CategoryController@edit');
+  Route::get('role/{id}/edit', 'RoleControler@edit');
+  Route::get('payment/{id}/edit', 'PaymentController@edit');
+  Route::get('product/{id}/edit', 'ProductController@edit');
 
-// admin.product.create.blade.php  muestra el formulario para crear un producto
-Route::get('/admin/products/add', 'ProductController@create');
+  //formularios controller update
+  Route::patch('category/{id}', 'CategoryController@update');
+  Route::patch('role/{id}', 'RoleController@update');
+  Route::patch('payment/{id}', 'PaymentController@update');
+  Route::patch('product/{id}', 'ProductController@update');
 
-//admin.ptoduct.store.blade.php guarda la la creacion del producto
-Route::post('/admin/products/add', 'ProductController@store');
-
-// website.product.show.blade.php  muestra el detalle de un producto
-Route::get('/products/{id}', 'ProductController@show');
-
-// admin.product.edit.blade.php  muestra el formulario para editar un producto
-Route::get('/admin/products/{id}/edit', 'ProductController@edit');
-Route::patch('/admin/products/{id}', 'ProductController@update');
-//admin.product.destroy.blade.php elimina el producto
-Route::delete('/admin/products/', 'ProductController@destroy');
-
-//ORDER
-
-// website.orders.index.blade.php muestra un listado de mis compras
-Route::get('/orders', 'OrderController@index');
-// website.orders.show.blade.php  muestra el detalle de una compra
-Route::get('/orders/{id}', 'OrderController@show');
-// admin.orders.create.blade.php  muestra el formulario para realizar la compra
-Route::get('/orders/add', 'OrderController@create');
-//website.orders.store.blade.php sube los datos que completo el usuario en la orden para poder hacer la compra
-Route::post('/orders/add', 'OrderController@store');
-//customer.orders.edit.blade.php muestra los cambios realizados en la orden.
-Route::get('/orders', 'OrderController@edit');
-Route::patch('/orders', 'OrderController@update');
-//admin.order.destroy.blade.php elimina el producto
-Route::delete('/admin/orders/', 'OrderController@destroy');
-
-
-//CARRITO
-
-//agrupamos las funciones
-Route::group(['middleware'=>'cart'], function(){
-  // website.cart.show.blade.php  muestra el detalle de una compra
-Route::get('/cart', 'CartController@index');
-
-  // website.cart.create.blade.php muestra la creacion (no es directamente la creacion ya que siempre hay un carrito vacio esperando) de un carrito
-Route::post('/cart/add', 'CartController@store');
-
-//website.cart.edit.blade.php edita el CARRITO
-Route::get('/cart', 'CartController@edit');
-
-//website.cart.update.blade.php manda los cambios editados
-Route::patch('/cart', 'CartController@update');
-
-//como pago el carro
-
+  //formularios controller destroy
+  Route::delete('category/{id}', 'CategoryController@destroy');
+  Route::delete('role/{id}', 'RoleController@destroy');
+  Route::delete('payment/{id}', 'PaymentController@destroy');
+  Route::delete('product/{id}', 'ProductController@destroy');
 });
-
- //USUARIO
-
- // website.users.index.blade.php muestra un listado de los usuarios
- Route::get('/users', 'UserController@index');
-
-// website.customer.show.blade.php  muestra el detalle de un usuario
-Route::get('/profile', 'UserController@show');
-
-Route::post('/profile', 'UserController@show');
-
-
-
-
-Route::get('/categories', 'CategoryController@index');
-
-Route::get('/categories/{id}', 'CategoryController@show');
-
-Route::group(['prefix'=> 'admin'], function(){
-
-Route::get('/categories/add', 'CategoryController@create');
-
-Route::post('/categories/add', 'CategoryController@store');
-
-Route::get('/categories/{id}/edit', 'CategoryController@edit');
-
-Route::patch('/categories/{id}', 'CategoryController@update');
-
-Route::delete('/categories/{id}', 'CategoryController@destroy');
-});
-
-Route::get('/payments', 'PaymentController@index');
-Route::get('/payments/{id}', 'PaymentController@show');
-
-//::group(['prefix => admin'], function(){
-
-Route::get('/admin/payments/add', 'PaymentController@create');
-Route::post('/admin/payments/add', 'PaymentController@store');
-Route::get('/admin/payments/{id}/edit', 'PaymentController@edit');
-Route::patch('/admin/payments/{id}', 'PaymentController@update');
-Route::delete('/admin/payments/{id}', 'PaymentController@destroy');
-//)};
   Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+  Route::get('/home', 'HomeController@index')->name('home');
