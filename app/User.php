@@ -15,37 +15,35 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
+    protected $fillable = ['name', 'email', 'password', 'avatar_id'];
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
+    protected $casts = ['email_verified_at' => 'datetime',
     ];
-//la relacion es con order o con cart??
-// public function carts(){
-//return $this->hasMany('App\Cart');
-//}
-//como hago la reclacion con product_user???
-    public function cart (){
+
+    public function roles (){
       return $this->belongsTo('App\Cart');
     }
 
     public function products(){
-        return $this->belongsToMany ('App\Product');
+        return $this->belongsToMany('App\Role', 'user_role', 'user_id', 'role_id');
+    }
+
+    public function avatar (){
+      return $this->hasMany('App\Photo', 'avatar_id');
+    }
+
+    public function address(){
+      return $this->belongsToMany('App\Address', 'user_address', 'user_id', 'address_id');
     }
 }
