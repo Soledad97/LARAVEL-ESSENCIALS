@@ -32,14 +32,12 @@ class PaymentController extends Controller
     {
 
 
-      return view('admin.payments.create', ['payment' => new Payment,'method' => "post"]);
-        //return view('admin.payments.create', ['payment' => new Payment]);
-        //  return view('.admin.create', [
-        //    'payment' => New Payment,
-        //  ]);
+      return view('admin.payments.create', [
+        'payment' => new Payment,
+        'method' => "post"
+      ]);
+
     }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -61,9 +59,10 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($payment)
+    public function show($id)
     {
-        return view('website.payment.show', ['payment' => Payment::findOrFail($payment)]);
+        return view('website.payment.show', [
+          'payment' => Payment::findOrFail($id)]);
     }
 
     /**
@@ -72,9 +71,10 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($payment)
+    public function edit($id)
     {
-        return view ('admin.payments.edit', ['payment' => Payment::findOrFail($payment)]);
+        return view ('admin.payments.edit', [
+          'payment' => Payment::findOrFail($id)]);
     }
 
 
@@ -85,7 +85,7 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $payment)
+    public function update(Request $request, $id)
     {
       $payment = Payment::find($id);
       $payment->update($request->all());
@@ -98,9 +98,9 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($payment)
+    public function destroy($id)
     {
-      $payment = Payment::findOrFail($payment);
+      $payment = Payment::findOrFail($id);
       $payment->delete();
       return redirect('/payments');
     }

@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Order;
+use App\Purchase;
 use App\Payment;
- 
+
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class PurchaseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-      return view('website.orders.index', ['orders' => order::all()]);
+      return view('website.purchases.index', ['purchases' => purchase::all()]);
 
     }
 
@@ -26,9 +26,11 @@ class OrderController extends Controller
      */
     public function create()
     {
-      //return view('admin.orders.create', [$]);
-      return view('/customer/create', [
-        'order' => New Order,
+        return view('purchase.create', [
+        'purchase' => New Purchase,
+        'cart' => session('cart'),
+        'addresses'=> Auth::user()->address,
+        'method' => Payment::all
       ]);
     }
 
@@ -45,21 +47,20 @@ class OrderController extends Controller
       // entra el validador y se le indica como debe validar lo que ingresa.
       // el validate automaticamente, si no lo hace, no sigue el proceso, sino que redirige a la pagina de donde vino, que normalmente es la pagina del formulario.
       $this->validate($request, [
-        'shipping_cost' => 'required',
-        'shipping_type' => 'required',
-        'total' => 'required',
-        'status_id' => 'required',
-        'payment_id' => 'required',
         'cart_id' => 'required',
+        'total' => 'required',
+        'address_id' => 'required',
+        'status_id' => 'required'
+
       ]);
       // invoco al modelo, le digo que voy a crear en la bese de datos un nuevo registro con todos los datos de ese array (all) los datos que indique el modelo.
-      $order = Order::create($request->all());
+      $purchase = Purchase::create($request->all());
 
-      return redirect('/order/' . $order->id);
+      return redirect('/purchase/' . $purchase->id);
 
       // return redirect()->back();  si quiero volver al formulario para seguir cargando productos.
 
-      // return redirect('/orders');   si quiero ir al listado de las ordenes creadas.
+      // return redirect('/purchases');   si quiero ir al listado de las ordenes creadas.
     }
 
     /**
@@ -68,24 +69,26 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($order)
+    public function show($purchase)
     {
-        return view('website.order.show', ['order' => Order::findOrFail($order)]);
+        return view('website.purchase.show', ['purchase' => Order::findOrFail($purchase)]);
     }
 
-    /**
+    /**()
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+
     {
-            //return view('website.order.edit', ['order' => Order::findOrFail($order)]);
-        $order = Order::findOrFail($id)
-        return view('admin.orders.edit', [
-          'order' => $order,
-        ]);
+      return view('purchase.edit', [
+      'purchase' => Purchase::findOrFail(id),
+      'cart' => session('cart'),
+      'addresses'=> Auth::user()->address,
+      'method' => Payment::all
+    ]);
     }
 
     /**
@@ -98,17 +101,15 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request, [
-        'shipping_cost' => 'required',
-        'shipping_type' => 'required',
-        'total' => 'required',
-        'status_id' => 'required',
-        'payment_id' => 'required',
         'cart_id' => 'required',
+        'total' => 'required',
+        'payment_id' => 'required',
+        'status_id' => 'required'
       ]);
 
-      $order = Order::find($id);
-      $order->update($request->all());
-      return redirect('/orders/' . $order->id);
+      $purchase = Purchase::find($id);
+      $purchase->update($request->all());
+      return redirect('/purchases/' . $purchase->id);
     }
 
     /**
@@ -117,10 +118,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($order)
+    public function destroy($purchase)
     {
-      $order = Order::findOrFail($order);
-      $order->delete();
-      return redirect('/orders');
+      //$Purchase = Purchase::findOrFail($purchase);
+      //$purchase->delete();
+      //return redirect('/purchases');
     }
 }

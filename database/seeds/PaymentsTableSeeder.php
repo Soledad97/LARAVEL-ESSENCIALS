@@ -11,6 +11,14 @@ class PaymentsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Payment::class)->create();
+        $methods = array(
+          ['method'=>'Paypal'],
+          ['method'=>'Mercado Pago'],
+          ['method'=>'Pago Facil'],
+
+        );
+        foreach($methods as $method) {
+          Payment::insert($method);
+        }
     }
 }

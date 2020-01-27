@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $fillable = ['name'];
+    protected $fillable = ['name', 'icon_id'];
 
-    public function products (){
-        return $this->hasMany('App\Product');
+    public function icon(){
+        return $this->belongsTo('App\Photo', 'icon_id');
     }
 }
