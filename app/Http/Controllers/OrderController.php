@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Order;
+use App\purchase;
 use App\Payment;
  
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class purchaseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-      return view('website.orders.index', ['orders' => order::all()]);
+      return view('website.purchases.index', ['purchases' => purchase::all()]);
 
     }
 
@@ -26,9 +26,9 @@ class OrderController extends Controller
      */
     public function create()
     {
-      //return view('admin.orders.create', [$]);
+      //return view('admin.purchases.create', [$]);
       return view('/customer/create', [
-        'order' => New Order,
+        'purchase' => New purchase,
       ]);
     }
 
@@ -53,13 +53,13 @@ class OrderController extends Controller
         'cart_id' => 'required',
       ]);
       // invoco al modelo, le digo que voy a crear en la bese de datos un nuevo registro con todos los datos de ese array (all) los datos que indique el modelo.
-      $order = Order::create($request->all());
+      $purchase = purchase::create($request->all());
 
-      return redirect('/order/' . $order->id);
+      return redirect('/purchase/' . $purchase->id);
 
       // return redirect()->back();  si quiero volver al formulario para seguir cargando productos.
 
-      // return redirect('/orders');   si quiero ir al listado de las ordenes creadas.
+      // return redirect('/purchases');   si quiero ir al listado de las ordenes creadas.
     }
 
     /**
@@ -68,9 +68,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($order)
+    public function show($purchase)
     {
-        return view('website.order.show', ['order' => Order::findOrFail($order)]);
+        return view('website.purchase.show', ['purchase' => purchase::findOrFail($purchase)]);
     }
 
     /**
@@ -81,10 +81,10 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-            //return view('website.order.edit', ['order' => Order::findOrFail($order)]);
-        $order = Order::findOrFail($id);
-        return view('admin.orders.edit', [
-          'order' => $order,
+            //return view('website.purchase.edit', ['purchase' => purchase::findOrFail($purchase)]);
+        $purchase = purchase::findOrFail($id);
+        return view('admin.purchases.edit', [
+          'purchase' => $purchase,
         ]);
     }
 
@@ -106,9 +106,9 @@ class OrderController extends Controller
         'cart_id' => 'required',
       ]);
 
-      $order = Order::find($id);
-      $order->update($request->all());
-      return redirect('/orders/' . $order->id);
+      $purchase = purchase::find($id);
+      $purchase->update($request->all());
+      return redirect('/purchases/' . $purchase->id);
     }
 
     /**
@@ -117,10 +117,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($order)
+    public function destroy($purchase)
     {
-      $order = Order::findOrFail($order);
-      $order->delete();
-      return redirect('/orders');
+      $purchase = purchase::findOrFail($purchase);
+      $purchase->delete();
+      return redirect('/purchases');
     }
 }

@@ -13,14 +13,17 @@ class CreateCartProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cart_products', function (Blueprint $table) {
+        Schema::create('product_cart', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('product_id')->nullable();
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->unsignedBigInteger('cart_id')->nullable();
-            $table->foreign('cart_id')->references('id')->on('carts');
-            $table->integer('quantity')->nullable();
-            $table->softDeletes();
+
+            $table->integer('quantity');
+            
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+
+            $table->unsignedBigInteger('cart_id');
+            $table->foreign('cart_id')->references('id')->on('categories')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

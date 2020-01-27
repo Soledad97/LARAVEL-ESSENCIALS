@@ -17,13 +17,10 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
-            $table->smallInteger('calification');
-            $table->integer('stock');
-            $table->double('price',7,2);
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->softDeletes();
+            $table->double('price', 5, 2)->nullable()->default(000.00);
+            $table->integer('stock')->unsigned()->nullable()->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
