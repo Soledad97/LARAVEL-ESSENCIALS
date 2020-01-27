@@ -45,7 +45,7 @@ class PhotoController extends Controller
      */
     public function show($id)
     {
-      'photo' => Photo::findOrFail($id)]);
+      Photo::findOrFail($id);
 
     }
 

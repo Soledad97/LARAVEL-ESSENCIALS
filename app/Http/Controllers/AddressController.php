@@ -45,7 +45,7 @@ class AddressController extends Controller
      */
     public function show($id)
     {
-      'address' => Address::findOrFail($id)]);
+      Address::findOrFail($id);
 
     }
 
