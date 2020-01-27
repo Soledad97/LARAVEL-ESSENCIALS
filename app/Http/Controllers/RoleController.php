@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Payment;
+use App\Role;
 
-class PaymentController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('admin.payment.index',['Metodos' => Payment::all()]);
+        return view('admin.role.index',['roles' => Role::all()]);
+      
     }
 
     /**
@@ -84,4 +85,3 @@ class PaymentController extends Controller
         //
     }
 }
-

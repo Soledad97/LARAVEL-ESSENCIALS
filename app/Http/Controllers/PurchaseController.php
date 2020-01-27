@@ -1,21 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\purchase;
+use App\Payment;
+ 
 use Illuminate\Http\Request;
 
-use App\Payment;
-
-class PaymentController extends Controller
+class PurchaseController extends Controller
 {
-    /**
+      /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('admin.payment.index',['Metodos' => Payment::all()]);
+        return view('admin.purchase.index',['compras' => Purchase::all()]); 
     }
 
     /**
@@ -25,7 +25,12 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        return view('purchase.create',[
+            'purchase' => new Purchase,
+            'cart' => session('cart'),
+            'addresses' => Auth::user()->addresses,
+            'mathods' => Payment::all
+        ]);
     }
 
     /**
@@ -58,7 +63,12 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('purchase.edit',[
+            'purchase' => Purchase::findOrFail($id),
+            'cart' => session('cart'),
+            'addresses' => Auth::user()->addresses,
+            'mathods' => Payment::all
+         ]);
     }
 
     /**
@@ -84,4 +94,3 @@ class PaymentController extends Controller
         //
     }
 }
-

@@ -1,18 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Cart;
-use App\Order;
-use App\User;
+
 use Illuminate\Http\Request;
 
-class cartController extends Controller
-{
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
+use App\Cart;
 
+class CartController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -20,11 +15,18 @@ class cartController extends Controller
      */
     public function index()
     {
-        return view('website.carts.index', [
-          'cart' => session('cart')
-        ]);
+        return view('admin.cart.index',['carritos' => Cart::all()]);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,14 +36,29 @@ class cartController extends Controller
      */
     public function store(Request $request)
     {
-dd($request->all());
+        //
     }
 
-
-
-    public function edit($cart)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-      //  return view ('admin.carts.edit', ['cart' => Cart::findOrFail($cart)]);
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -56,57 +73,14 @@ dd($request->all());
         //
     }
 
-   
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 }
-
-
-/** CREAR UN MIDDLEWARE
- * Se va a guadar en app/http/middleware/CartMiddleware
- * php artisan make:middlewarer CartMiddleware
- *
- * Registrar middleware
- * agregar en el archivo app/http/kernel.php
- * dentro del array $routeMiddleware
- *
- * 'cart' => \app\http\middleware\CartMiddleware::class,
- *
- * \\utilizar en la rutas que corresponda
- *
- * route::group(['middleware' =>'cart'], function (){
- *       route::get('/products/{id}', 'ProductsController@show');
- * });
- *
- * siempre tiene  q haber un next en el middleware
- *
- *
- * if(session('cart')){
- *
- *    session('cart','new cart')
- * }
- *
- * return $next($request);
- *
- *
- *
- *
- *
- *
- * $user =app/user::find(1);
- *
- * $user->roles()->attach($roleId);
- *
- *
- *
- *
- * $cart = session('cart');
- *
- * $cart->products()->attach(
- *     $request->get('product_id'), ['qty'-> $request->get('qty')]
- * );
- *
- * session()->put('cart','$cart');
- *
- *
- * actualizar en pivot en sync
- *
- * */

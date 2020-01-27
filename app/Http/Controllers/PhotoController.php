@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Payment;
+use App\Photo;
 
-class PaymentController extends Controller
+class PhotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('admin.payment.index',['Metodos' => Payment::all()]);
+        return view('admin.photo.index',['fotos' => Photo::all()]);
     }
 
     /**
@@ -84,4 +84,3 @@ class PaymentController extends Controller
         //
     }
 }
-

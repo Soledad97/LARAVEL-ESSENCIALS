@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use Illuminate\Http\Request;
+
+use App\Category;
+use App\Photo;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('website.Categories.index', ['categories' => Category::all()]);
+        return view('admin.category.index',['categorias' => Category::all()]);
     }
 
     /**
@@ -24,7 +26,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.category.create',[
+            'categoria' => new Category
+        ]);
     }
 
     /**
@@ -35,60 +39,82 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = Category::create($request->all());
+        $categoria = new Category;
 
-        return redirect('/categories/' . $category->id);
+        if($request->file('icon')){
+            $icono = new Photo;
+            $imageName = time().'.'.$request->file('icon')->getClientOriginalExtension();
+            $request->file('icon')->move(public_path('categories'), $imageName);
+            $icono->source = $imageName;
+            $icono->type = "category";
+            $icono->save();
+            $categoria->icon_id = $icono->id;
+        }
+
+        $categoria->name = $request->name;
+        $categoria->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($category)
+    public function show($id)
     {
-        return view('website.categories.show', ['category' => Category::findOrFail($category)]);
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($category)
+    public function edit($id)
     {
-        return view ('admin.categories.edit', ['category' => Category::findOrFail($category)]);
+        return view('admin.category.edit',[
+            'categoria' => Category::findOrFail($id)
+        ]);
+   
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $category)
+    public function update(Request $request, $id)
     {
-        $category = Category::find($category);
-        $category->update($request->all());
-        return redirect('/categories/' . $category->id);
+        $categoria = Category::findOrFail($id);
+
+        if($request->file('icon')){
+            $icono = new Photo;
+            $imageName = time().'.'.$request->file('icon')->getClientOriginalExtension();
+            $request->file('icon')->move(public_path('categories'), $imageName);
+            $icono->source = $imageName;
+            $icono->type = "category";
+            $icono->save();
+            $categoria->icon_id = $icono->id;
+        }
+
+        $categoria->name = $request->name;
+        $categoria->save();
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($category)
+    public function destroy($id)
     {
-        $category = Category::findOrFail($category);
-
-        $category->delete();
-
-        return redirect('/categories');
+        dd(Category::findOrFail($id));
     }
 }

@@ -22,7 +22,7 @@
                 <a href="/products/{{ $product->id }}">
                 
                 </a> 
-            <img src="{{ url($product->image) }}" alt="">  
+            <img src="{{ url("image/".$product->photo) }}" alt="">  
                 </div>
             @endforeach
        

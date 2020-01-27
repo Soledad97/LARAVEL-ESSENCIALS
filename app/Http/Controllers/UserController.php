@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\User;
+
 use Illuminate\Http\Request;
+
+use App\User;
 
 class UserController extends Controller
 {
@@ -13,8 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-      return view('website.users.index', ['users' => User::all()]);
-
+        return view('admin.role.index',['roles' => Role::all()]);
     }
 
     /**
@@ -24,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create', ['users' => User::find()]);
+        //
     }
 
     /**
@@ -35,9 +36,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      $user = User::create($request->all());
-
-      return redirect('/user/' . $user->id);
+        //
     }
 
     /**
@@ -48,7 +47,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**

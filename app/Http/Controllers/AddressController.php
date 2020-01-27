@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Address;
 
-use App\Payment;
-
-class PaymentController extends Controller
+class AddressController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('admin.payment.index',['Metodos' => Payment::all()]);
+        return view('admin.address.index',['direcciones' => Address::all()]);
+        //
     }
 
     /**
@@ -84,4 +84,3 @@ class PaymentController extends Controller
         //
     }
 }
-
