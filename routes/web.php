@@ -10,23 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 
-*/ 
+*/
 // website.index.blade.php muestra el home de la pagina
 Route::get('/', 'WebsiteController@index');
 
-// TODOS 
 // website.product.index.blade.php muestra un listado de productos
 Route::get('/products', 'ProductController@index');
 
 // website.product.show.blade.php  muestra el detalle de un producto
 Route::get('/products/{id}', 'ProductController@show');
-
-
-
-
-
-
-
 
 // website.purchases.index.blade.php muestra un listado de mis compras
 Route::get('/purchases', 'OrderController@index');
@@ -38,15 +30,6 @@ Route::get('/purchases/{id}', 'OrderController@show');
 Route::get('/purchases/add', 'OrderController@create');
 
 
-Route::group(['middleware'=>'cart'], function(){
-  // website.cart.show.blade.php  muestra el detalle de una compra
-  Route::get('/cart', 'CartController@index');
-
-  // website.cart.create.blade.php muestra la creacion de un carrito
-  Route::post('/cart/add', 'CartController@store');
-
-
-});
 
 
 // RUTAS DE  PRODUCTOS FOTOS // Esto no va //
@@ -59,50 +42,29 @@ Route::group(['middleware'=>'cart'], function(){
 Route::get('/photos', 'PhotoController@index');
 
 // website.product.show.blade.php  muestra el detalle de un producto
-Route::get('/photos/{id}', 'PhotoController@show');
-
-// admin.product.create.blade.php  muestra el formulario para crear un producto
-Route::get('/admin/photos/add', 'PhotoController@create');
-
-// admin.product.edit.blade.php  muestra el formulario para editar un producto
-Route::get('/admin/photos/{id}/edit', 'PhotoController@edit');
-
-
 
 // admin.customer.show.blade.php  muestra el formulario para finalizar la compra
 Route::get('/profile', 'UserController@show');
-
 Route::post('/profile', 'UserController@show');
-
-
-
+Route::get('/categories/{id}', 'CategoryController@show');
+Route::get('/payments/{id}', 'paymentsController@show');
+Route::get('/photos/{id}', 'PhotoController@show');
 
 Route::get('/categories', 'CategoryController@index');
 
-Route::get('/categories/{id}', 'CategoryController@show');
+Route::group(['middleware'=>'cart'], function(){
+// website.cart.show.blade.php  muestra el detalle de una compra
+Route::get('/cart', 'CartController@index');
+// website.cart.create.blade.php muestra la creacion de un carrito
+Route::post('/cart/add', 'CartController@store');
 
-Route::get('/admin/categories/add', 'CategoryController@create');
-
-Route::get('/admin/categories/{id}/edit', 'CategoryController@create');
-
-
-
-Route::get('/payments', 'paymentsController@index');
-
-Route::get('/payments/{id}', 'paymentsController@show');
-
-Route::get('/admin/payments/add', 'paymentsController@create');
-
-Route::get('/admin/payments/{id}/edit', 'paymentsController@create');
- 
-
-
+});
 
 
 Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   // tablas : views admin.index.blade.php
   Route::get('address', 'AddressController@index');
-  Route::get('cart', 'CartController@index');
+  //Route::get('cart', 'CartController@index');
   Route::get('category', 'CategoryController@index');
   Route::get('payment', 'PaymentController@index');
   Route::get('photo', 'PhotoController@index');
@@ -111,11 +73,13 @@ Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   Route::get('role', 'RoleController@index');
   Route::get('user', 'UserController@index');
 
+
   //formularios : views admin.create.blade.php
   Route::get('category/add', 'CategoryController@create');
   Route::get('role/add', 'RoleController@create');
   Route::get('payment/add', 'PaymentController@create');
   Route::get('product/add', 'ProductController@create');
+  Route::get('/photos/add', 'PhotoController@create');
 
   //formularios Controller store
   Route::post('category/add', 'CategoryController@store');
@@ -128,6 +92,8 @@ Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   Route::get('role/{id}/edit', 'RoleControler@edit');
   Route::get('payment/{id}/edit', 'PaymentController@edit');
   Route::get('product/{id}/edit', 'ProductController@edit');
+  Route::get('/photos/{id}/edit', 'PhotoController@edit');
+
 
   //formularios controller update
   Route::patch('category/{id}', 'CategoryController@update');
