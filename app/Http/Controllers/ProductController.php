@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Product;
+use App\Category;
 class ProductController extends Controller
 {
     /**
@@ -25,7 +26,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.create', 
+        
+        ['categories' => Category::all(), 'product' => new Product]);
     }
 
     /**
@@ -36,7 +39,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate ($request,
+        [
+        'title' => 'required',
+        'stock' => 'required',
+        'price' => 'required',
+        'image' => 'requiered',
+        ]);
+        
+        
+        $product = Product::create($request->all());
+
+        return redirect('/products/' . $product->id);
     }
 
     /**
@@ -45,9 +59,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
-        //
+        return view('website.products.show', ['product' => Product::findOrFail($product)]);
     }
 
     /**
@@ -58,7 +73,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.products.edit', [
+            'categories' => Category::all(),
+            'product' => Product::findOrFail($product)
+        ]);
     }
 
     /**
@@ -70,7 +88,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate ($request,
+        [
+        'title' => 'required',
+        'stock' => 'required',
+        'price' => 'required',
+        'image' => 'requiered',
+        ]);
+        
+        
+        
+        $product = Product::find($id);
+        $product->update($request->all());
+        return redirect('/products/' . $product->id);
     }
 
     /**
@@ -81,6 +111,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $product->delete();
+
+        return redirect('/products');
     }
 }
