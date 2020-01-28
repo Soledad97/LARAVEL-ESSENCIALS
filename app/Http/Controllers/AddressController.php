@@ -47,7 +47,7 @@ class AddressController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('website.address.show', ['address' => Address::findOrFail($address)]);
     }
 
     /**
@@ -58,7 +58,7 @@ class AddressController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -81,6 +81,10 @@ class AddressController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $address = Address::findOrFail($id);
+
+      $address->delete();
+
+      return redirect('/address');
     }
 }

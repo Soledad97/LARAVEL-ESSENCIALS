@@ -11,60 +11,40 @@
 |
 
 */
+//WEBSITE
 // website.index.blade.php muestra el home de la pagina
+Route::get('payment/add', 'PaymentController@create');
 Route::get('/', 'WebsiteController@index');
-
-// website.product.index.blade.php muestra un listado de productos
 Route::get('/products', 'ProductController@index');
-
-// website.product.show.blade.php  muestra el detalle de un producto
 Route::get('/products/{id}', 'ProductController@show');
-
-// website.purchases.index.blade.php muestra un listado de mis compras
-Route::get('/purchases', 'OrderController@index');
-
-// website.purchases.show.blade.php  muestra el detalle de una compra
-Route::get('/purchases/{id}', 'OrderController@show');
-
+Route::get('/purchases', 'PurchaseController@index');
+Route::get('/purchases/{id}', 'PurchaseController@show');
+Route::get('/payments', 'PaymentController@index');
+Route::get('/photos', 'PhotoController@index');
 // admin.purchases.create.blade.php  muestra el formulario para finalizar la compra
 Route::get('/purchases/add', 'OrderController@create');
 
-
-
-
-// RUTAS DE  PRODUCTOS FOTOS // Esto no va //
-
-
-// website.index.blade.php muestra el home de la pagina
-//Route::get('/', 'WebsiteController@index');
-
-// website.product.index.blade.php muestra un listado de productos
-Route::get('/photos', 'PhotoController@index');
-
-// website.product.show.blade.php  muestra el detalle de un producto
-
-// admin.customer.show.blade.php  muestra el formulario para finalizar la compra
+//CUSTOMER
+Route::group(['prefix'=>'customer'], function(){
 Route::get('/profile', 'UserController@show');
 Route::post('/profile', 'UserController@show');
 Route::get('/categories/{id}', 'CategoryController@show');
 Route::get('/payments/{id}', 'paymentsController@show');
 Route::get('/photos/{id}', 'PhotoController@show');
-
 Route::get('/categories', 'CategoryController@index');
+});
 
+//CART
 Route::group(['middleware'=>'cart'], function(){
-// website.cart.show.blade.php  muestra el detalle de una compra
 Route::get('/cart', 'CartController@index');
-// website.cart.create.blade.php muestra la creacion de un carrito
+Route::get('/cart', 'CartController@show');
 Route::post('/cart/add', 'CartController@store');
 
 });
-
-
-Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
+//ADMIN
+//Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   // tablas : views admin.index.blade.php
   Route::get('address', 'AddressController@index');
-  //Route::get('cart', 'CartController@index');
   Route::get('category', 'CategoryController@index');
   Route::get('payment', 'PaymentController@index');
   Route::get('photo', 'PhotoController@index');
@@ -73,11 +53,9 @@ Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   Route::get('role', 'RoleController@index');
   Route::get('user', 'UserController@index');
 
-
   //formularios : views admin.create.blade.php
   Route::get('category/add', 'CategoryController@create');
   Route::get('role/add', 'RoleController@create');
-  Route::get('payment/add', 'PaymentController@create');
   Route::get('product/add', 'ProductController@create');
   Route::get('/photos/add', 'PhotoController@create');
 
@@ -94,7 +72,6 @@ Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   Route::get('product/{id}/edit', 'ProductController@edit');
   Route::get('/photos/{id}/edit', 'PhotoController@edit');
 
-
   //formularios controller update
   Route::patch('category/{id}', 'CategoryController@update');
   Route::patch('role/{id}', 'RoleController@update');
@@ -106,6 +83,10 @@ Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   Route::delete('role/{id}', 'RoleController@destroy');
   Route::delete('payment/{id}', 'PaymentController@destroy');
   Route::delete('product/{id}', 'ProductController@destroy');
-});
+//});
   Auth::routes();
   Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

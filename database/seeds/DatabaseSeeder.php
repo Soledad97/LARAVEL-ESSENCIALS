@@ -11,8 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       $this->call(RolesTableSeeder::class);
-       $this->call(PaymentsTableSeeder::class);
-       $this->call(CategoriesTableSeeder::class);
+       //$this->call(RolesTableSeeder::class);
+       //$this->call(PaymentsTableSeeder::class);
+       //$this->call(CategoriesTableSeeder::class);
+       factory(\App\Payment::Class, 5)->create();
+
     }
 }
