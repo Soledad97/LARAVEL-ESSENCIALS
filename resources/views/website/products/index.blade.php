@@ -1,9 +1,8 @@
-@extends('layouts.website.products')
+@extends('layouts.app')
 
 
 @section('title')
      listado productos
-     
 @endsection
 
 
@@ -14,19 +13,19 @@
        <div class="col">
             
        
-            @foreach ($products as $product )
+            @foreach ($productos as $producto )
                 
-            <h1>{{$product->name}}</h1>
+            <div class="card" style="width: 18rem;">
 
-            <div>  
-                <a href="/products/{{ $product->id }}">
-                
-                </a> 
-            <img src="{{ url("image/".$product->photo) }}" alt="">  
+                <img class="card-img-top" src="{{ url("image/".$producto->photos[0]->source) }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{$producto->name}}</h5>
+                    <p class="card-text">{{$producto->description}}</p>
+                <a href="/product/{{$producto->id}}" class="btn btn-primary">Ver</a>
                 </div>
+              </div>
             @endforeach
-       
-
+    
 
          </div>
      </div>

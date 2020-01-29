@@ -18,8 +18,6 @@ Route::get('/', 'WebsiteController@index');
 
 Route::get('/product', 'ProductController@index');
 Route::get('/product/{id}', 'ProductController@show');
-Route::get('/purchase', 'PurchaseController@index');
-Route::get('/purchase/{id}', 'PurchaseController@show');
 
 Route::get('/category', 'CategoryController@index');
 Route::get('/category/{id}', 'CategoryController@show');
