@@ -16,9 +16,10 @@ class WebsiteController extends Controller
     public function index()
     {
         $products = Product::all();
+        $categories = Category::all();
         
         //va a entrar a website ->carpeta products y muestra lo q contiene el index de  producto ('website.index')// 
-        return view('website.index', ['products' => $products]);
+        return view('website.index', ['products' => $products,'categories' => $categories]);
     }
 
 

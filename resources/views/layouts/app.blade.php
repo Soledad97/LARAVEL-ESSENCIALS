@@ -44,10 +44,14 @@
           Categoria
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Jabones</a>
-          <a class="dropdown-item" href="#">cremas</a>
-          <a class="dropdown-item" href="#">tonicos</a>
-          <div class="dropdown-divider"></div>
+
+
+
+            @foreach ($categories as $category )
+                <a class="dropdown-item" href="category/{{$category->id}}">
+                    {{$category->name}}
+                </a>
+            @endforeach
           
         </div>
       </li>

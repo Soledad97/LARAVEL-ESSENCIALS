@@ -8,6 +8,9 @@
 
 @section('content')
  
+//MUESTRA TODOS LOS PRODUCTOS
+
+
 <div class ="container">
     <div class= "row">
        <div class="col">
