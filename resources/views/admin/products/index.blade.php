@@ -1,14 +1,14 @@
-@extends('layouts.admin.products')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>{{ $title }}</h1>
+                <h1> productos </h1>
 
-                @include('admin.product.index', [
+                @include('admin.products.index', [
                     'method' => 'get',
-                    'url' => '/products/' . $product->id
+                    'url' => '/products/' 
                 ])
 
                 @foreach ($products as $product)

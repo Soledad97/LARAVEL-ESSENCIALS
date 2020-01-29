@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.product.index',['productos' => Product::all()]);
+        return view('admin.products.index',['products' => Product::all()]);
       
     }
 
@@ -41,10 +41,10 @@ class ProductController extends Controller
     {
         $this->validate ($request,
         [
-        'title' => 'required',
+        'name' => 'required',
         'stock' => 'required',
         'price' => 'required',
-        'image' => 'requiered',
+        'photo' => 'requiered',
         ]);
         
         
@@ -90,10 +90,10 @@ class ProductController extends Controller
     {
         $this->validate ($request,
         [
-        'title' => 'required',
+        'name' => 'required',
         'stock' => 'required',
         'price' => 'required',
-        'image' => 'requiered',
+        'photo' => 'requiered',
         ]);
         
         

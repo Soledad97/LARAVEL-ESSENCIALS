@@ -60,8 +60,8 @@ Route::post('/cart/add', 'CartController@store');
 
 });
 
-
-Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
+//PREFIX COMENTADO
+//Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   // tablas : views admin.index.blade.php
   Route::get('address', 'AddressController@index');
   //Route::get('cart', 'CartController@index');
@@ -106,6 +106,6 @@ Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   Route::delete('role/{id}', 'RoleController@destroy');
   Route::delete('payment/{id}', 'PaymentController@destroy');
   Route::delete('product/{id}', 'ProductController@destroy');
-});
+//});
   Auth::routes();
   Route::get('/home', 'HomeController@index')->name('home');
