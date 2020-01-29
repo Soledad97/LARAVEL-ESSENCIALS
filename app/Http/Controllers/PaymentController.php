@@ -21,7 +21,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('admin.payment.index',['Metodos' => Payment::all()]);
+        return view('admin.payment.index',['metodos' => Payment::all()]);
     }
 
     /**
@@ -52,7 +52,7 @@ class PaymentController extends Controller
 
       $payment = Payment::create($request->all());
 
-      return redirect('/payment/' . $payment->id);
+      return redirect('admin/payment');
     }
 
     /**
@@ -63,7 +63,7 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        return view('website.payment.show', ['payment' => Payment::findOrFail($payment)]);
+        return view('admin.payment.show', ['payment' => Payment::findOrFail($payment)]);
     }
 
     /**
@@ -96,7 +96,7 @@ class PaymentController extends Controller
 
       $payment = Payment::find($id);
       $payment->update($request->all());
-      return redirect('/payment/' . $payment->id);
+      return redirect('admin/payment/' . $payment->id);
     }
 
     /**
@@ -111,6 +111,6 @@ class PaymentController extends Controller
 
       $payment->delete();
 
-      return redirect('/payment');
+      return redirect('admin/payment');
     }
 }

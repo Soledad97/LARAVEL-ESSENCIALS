@@ -26,9 +26,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-      return view('role.create',[
-          'role' => new Role,
-      ]);
+
     }
 
     /**
@@ -39,15 +37,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-      $this->validate ($request,
-      [
-      'name' => 'required',
 
-      ]);
-
-      $role = Role::create($request->all());
-
-      return redirect('/roles/' . $role->id);
     }
 
     /**
@@ -56,9 +46,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
-        return view('website.role.show', ['role' => Role::findOrFail($role)]);
+
     }
 
     /**
@@ -67,12 +57,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-      return view('role.edit',[
-          'role' => Role::findOrFail($id),
 
-       ]);
     }
 
     /**
@@ -82,7 +69,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
         //
     }
@@ -93,12 +80,8 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-      $role = Role::findOrFail($id);
-
-      $role->delete();
-
-      return redirect('/role');
+      
     }
 }

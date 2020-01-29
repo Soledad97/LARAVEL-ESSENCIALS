@@ -8,7 +8,7 @@
 
               @include('admin.payment.form', [
                   'method' => 'post',
-                  'url' => '/admin/payment',
+                  'url' => '/admin/payment/add',
               ])
           </div>
       </div>
