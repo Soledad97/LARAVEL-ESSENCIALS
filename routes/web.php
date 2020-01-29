@@ -11,68 +11,49 @@
 |
 
 */
+//WEBSITE
 // website.index.blade.php muestra el home de la pagina
+
 Route::get('/', 'WebsiteController@index');
 
-// website.product.index.blade.php muestra un listado de productos
-Route::get('/products', 'ProductController@index');
+Route::get('/product', 'ProductController@index');
+Route::get('/product/{id}', 'ProductController@show');
+Route::get('/purchase', 'PurchaseController@index');
+Route::get('/purchase/{id}', 'PurchaseController@show');
 
-// website.product.show.blade.php  muestra el detalle de un producto
-Route::get('/products/{id}', 'ProductController@show');
+Route::get('/category', 'CategoryController@index');
+Route::get('/category/{id}', 'CategoryController@show');
 
-// website.purchases.index.blade.php muestra un listado de mis compras
-Route::get('/purchases', 'OrderController@index');
-
-// website.purchases.show.blade.php  muestra el detalle de una compra
-Route::get('/purchases/{id}', 'OrderController@show');
 
 // admin.purchases.create.blade.php  muestra el formulario para finalizar la compra
-Route::get('/purchases/add', 'OrderController@create');
 
+//CUSTOMER
+Route::group(['prefix'=>'customer'], function(){
 
-
-
-// RUTAS DE  PRODUCTOS FOTOS // Esto no va //
-
-
-// website.index.blade.php muestra el home de la pagina
-//Route::get('/', 'WebsiteController@index');
-
-// website.product.index.blade.php muestra un listado de productos
-Route::get('/photos', 'PhotoController@index');
-
-// website.product.show.blade.php  muestra el detalle de un producto
-
-// admin.customer.show.blade.php  muestra el formulario para finalizar la compra
 Route::get('/profile', 'UserController@show');
-Route::post('/profile', 'UserController@show');
-Route::get('/categories/{id}', 'CategoryController@show');
-Route::get('/payments/{id}', 'paymentsController@show');
-Route::get('/photos/{id}', 'PhotoController@show');
+Route::post('/profile', 'UserController@update');
 
-Route::get('/categories', 'CategoryController@index');
-
-Route::group(['middleware'=>'cart'], function(){
-// website.cart.show.blade.php  muestra el detalle de una compra
-Route::get('/cart', 'CartController@index');
-// website.cart.create.blade.php muestra la creacion de un carrito
-Route::post('/cart/add', 'CartController@store');
+Route::get('purchase', 'PurchasesController@index');
+Route::get('/purchase/add', 'PurchaseController@create');
 
 });
 
-
+//CART
+Route::group(['middleware'=>'cart'], function(){
+Route::get('/cart', 'CartController@index');
+Route::get('/cart', 'CartController@show');
+Route::post('/cart/add', 'CartController@store');
+});
+//ADMIN
 Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   // tablas : views admin.index.blade.php
   Route::get('address', 'AddressController@index');
-  //Route::get('cart', 'CartController@index');
   Route::get('category', 'CategoryController@index');
   Route::get('payment', 'PaymentController@index');
   Route::get('photo', 'PhotoController@index');
   Route::get('product', 'ProductController@index');
-  Route::get('purchase', 'PurchasesController@index');
   Route::get('role', 'RoleController@index');
   Route::get('user', 'UserController@index');
-
 
   //formularios : views admin.create.blade.php
   Route::get('category/add', 'CategoryController@create');
@@ -92,8 +73,7 @@ Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   Route::get('role/{id}/edit', 'RoleControler@edit');
   Route::get('payment/{id}/edit', 'PaymentController@edit');
   Route::get('product/{id}/edit', 'ProductController@edit');
-  Route::get('/photos/{id}/edit', 'PhotoController@edit');
-
+  Route::get('photos/{id}/edit', 'PhotoController@edit');
 
   //formularios controller update
   Route::patch('category/{id}', 'CategoryController@update');
@@ -107,5 +87,10 @@ Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   Route::delete('payment/{id}', 'PaymentController@destroy');
   Route::delete('product/{id}', 'ProductController@destroy');
 });
+
   Auth::routes();
   Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -63,7 +63,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('website.category.show', ['category' => Category::findOrFail($payment)]);
     }
 
     /**
@@ -77,7 +77,7 @@ class CategoryController extends Controller
         return view('admin.category.edit',[
             'categoria' => Category::findOrFail($id)
         ]);
-   
+
     }
 
     /**
@@ -120,7 +120,7 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect('/categories');
-        
+
         //dd(Category::findOrFail($id));
     }
 }

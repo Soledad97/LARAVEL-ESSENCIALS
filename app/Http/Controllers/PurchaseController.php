@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 use App\purchase;
 use App\Payment;
- 
+
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
+
       /**
      * Display a listing of the resource.
      *
@@ -15,7 +16,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        return view('admin.purchase.index',['compras' => Purchase::all()]); 
+        return view('admin.purchase.index',['compras' => Purchase::all()]);
     }
 
     /**
@@ -29,7 +30,7 @@ class PurchaseController extends Controller
             'purchase' => new Purchase,
             'cart' => session('cart'),
             'addresses' => Auth::user()->addresses,
-            'mathods' => Payment::all
+            'methods' => Payment::all
         ]);
     }
 
@@ -41,7 +42,18 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $this->validate ($request,
+      [
+      'purchase' => 'required',
+      'cart' => 'required',
+      'address' => 'required',
+      'method' => 'requiered',
+      ]);
+
+
+      $purchase = Purchase::create($request->all());
+
+      return redirect('/purchase/' . $purchase->id);
     }
 
     /**
@@ -52,7 +64,7 @@ class PurchaseController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('website.purchase.show', ['purchase' => Purchase::findOrFail($purchase)]);
     }
 
     /**
@@ -67,7 +79,7 @@ class PurchaseController extends Controller
             'purchase' => Purchase::findOrFail($id),
             'cart' => session('cart'),
             'addresses' => Auth::user()->addresses,
-            'mathods' => Payment::all
+            'methods' => Payment::all
          ]);
     }
 
@@ -80,7 +92,18 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $this->validate ($request,
+      [
+      'cart' => 'required',
+      'address' => 'required',
+      'method' => 'required',
+
+      ]);
+
+
+      $purchase = Purchase::find($id);
+      $purchase->update($request->all());
+      return redirect('/purchase/' . $purchase->id);
     }
 
     /**

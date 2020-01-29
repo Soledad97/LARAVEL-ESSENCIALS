@@ -32,7 +32,8 @@ class User extends Authenticatable
     ];
 
     public function roles (){
-      return $this->belongsTo('App\Cart');
+      //return $this->belongsTo('App\Cart');
+      return $this->belongTo(Role::class, 'role_id');
     }
 
     public function products(){

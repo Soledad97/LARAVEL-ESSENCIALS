@@ -8,11 +8,11 @@ use App\Payment;
 
 class PaymentController extends Controller
 {
-    
-    
+
+
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('admin.payment.index',['Metodos' => Payment::all()]);
+        return view('admin.payment.index',['metodos' => Payment::all()]);
     }
 
     /**
@@ -31,7 +31,9 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+      return view('admin.payment.create',[
+          'payment' => new Payment
+      ]);
     }
 
     /**
@@ -42,7 +44,15 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $this->validate ($request,
+      [
+      'method' => 'required',
+
+      ]);
+
+      $payment = Payment::create($request->all());
+
+      return redirect('admin/payment');
     }
 
     /**
@@ -53,7 +63,7 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.payment.show', ['payment' => Payment::findOrFail($payment)]);
     }
 
     /**
@@ -64,7 +74,9 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        //
+      return view('admin.payment.edit',[
+          'payment' => Payment::findOrFail($id)
+      ]);
     }
 
     /**
@@ -76,7 +88,15 @@ class PaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $this->validate ($request,
+      [
+      'method' => 'required',
+
+      ]);
+
+      $payment = Payment::find($id);
+      $payment->update($request->all());
+      return redirect('admin/payment/' . $payment->id);
     }
 
     /**
@@ -87,7 +107,10 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $payment = Payment::findOrFail($id);
+
+      $payment->delete();
+
+      return redirect('admin/payment');
     }
 }
-

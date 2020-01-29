@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.role.index',['roles' => Role::all()]);
+        return view('admin.user.index',['usuarios' => User::all()]);
     }
 
     /**
@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -47,7 +47,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('website.user.show', ['user' => User::findOrFail($user)]);
     }
 
     /**

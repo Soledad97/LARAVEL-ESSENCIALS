@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Cart;
+use App\Product;
 
 class CartController extends Controller
 {
+
+  }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +18,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('admin.cart.index',['carritos' => Cart::all()]);
+        return view('website.cart.index',['cart' => session('cart')
+      ]);
     }
 
     /**
@@ -23,9 +27,13 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Product $product)
     {
-        //
+        $cart = session('cart');
+        $cart->products()->attach(
+        $request->get('product_id'), ['qty'=>$request->get('qty')]
+      );
+      session()->put('cart', $cart);
     }
 
     /**
@@ -47,7 +55,8 @@ class CartController extends Controller
      */
     public function show($id)
     {
-        //
+      //return \Session::get('cart');
+        return view('website.cart.show', ['cart' => Cart::findOrFail($cart)]);
     }
 
     /**
@@ -70,7 +79,11 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cart = session('cart');
+        $cart->products()->sync([
+          $request->get('product_id') => ['qty' => $request -> get('qty')]
+        ]);
+        session()->put('cart, $cart');
     }
 
     /**
@@ -81,6 +94,8 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cart = session('cart');
+        $cart = products()->detach($request->get('product_id'));
+        session()->put('cart', $cart);
     }
 }
