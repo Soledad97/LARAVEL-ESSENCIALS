@@ -16,8 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('website.products.index',['productos' => Product::all()]);
-      
-    }
+}
 
     /**
      * Show the form for creating a new resource.
@@ -26,8 +25,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create', 
-        
+        return view('admin.products.create',
+
         ['categories' => Category::all(), 'product' => new Product]);
     }
 
@@ -46,8 +45,8 @@ class ProductController extends Controller
         'stock' => 'required',
         'price' => 'required',
         ]);
-        
-        
+
+
         $product = Product::create($request->all());
 
         return redirect('/products/' . $product->id);
@@ -95,9 +94,9 @@ class ProductController extends Controller
         'stock' => 'required',
         'price' => 'required',
         ]);
-        
-        
-        
+
+
+
         $product = Product::find($id);
         $product->update($request->all());
         return redirect('/products/' . $product->id);

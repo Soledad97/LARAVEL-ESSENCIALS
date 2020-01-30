@@ -14,6 +14,17 @@
 <div class ="container">
     <div class= "row">
        <div class="col">
+
+
+            @foreach ($products as $product )
+
+            <h1>{{$product->name}}</h1>
+
+            <div>
+                <a href="/products/{{ $product->id }}">
+
+                </a>
+            <img src="{{ url("image/".$product->photo) }}" alt="">
             
        
             @foreach ($productos as $producto )
@@ -32,9 +43,6 @@
 
             @endforeach
 
-
-            
-    
 
          </div>
      </div>

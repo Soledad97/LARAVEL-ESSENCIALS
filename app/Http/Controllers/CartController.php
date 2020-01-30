@@ -10,7 +10,6 @@ use App\Product;
 class CartController extends Controller
 {
 
-  }
     /**
      * Display a listing of the resource.
      *
@@ -80,10 +79,20 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         $cart = session('cart');
+        $product->qty=1;
+
+         Hacer if mismo producto suma
+       if (isset($cart['product_id'])) {
+
+        }
+
         $cart->products()->sync([
-          $request->get('product_id') => ['qty' => $request -> get('qty')]
+          $request->get('product_id') => ['qty' => $request->get('qty')]
         ]);
+
         session()->put('cart, $cart');
+
+        //return redirect()->route(website.cart.show);??
     }
 
     /**
