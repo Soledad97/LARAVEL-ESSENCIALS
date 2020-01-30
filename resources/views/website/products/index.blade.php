@@ -27,7 +27,13 @@
                 <a href="/product/{{$producto->id}}" class="btn btn-primary">Ver</a>
                 </div>
               </div>
+
+              
+
             @endforeach
+
+
+            
     
 
          </div>
