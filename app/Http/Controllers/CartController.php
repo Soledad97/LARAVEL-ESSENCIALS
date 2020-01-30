@@ -79,10 +79,10 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         $cart = session('cart');
-        //$product->qty=1;
+        $product->qty=1;
 
-        // Hacer if mismo producto suma
-      //  if (isset($cart['product_id'])) {
+         Hacer if mismo producto suma
+       if (isset($cart['product_id'])) {
 
         }
 
