@@ -63,7 +63,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        return view('website.category.show', ['category' => Category::findOrFail($payment)]);
+        return view('website.categories.show', ['category' => Category::findOrFail($id)]);
     }
 
     /**
@@ -115,7 +115,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($category);
+        $category = Category::findOrFail($id);
 
         $category->delete();
 

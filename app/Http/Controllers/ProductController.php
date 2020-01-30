@@ -16,7 +16,11 @@ class ProductController extends Controller
     public function index()
     {
         return view('website.products.index',['productos' => Product::all()]);
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 06c072d3371b30172b8d3f6ea6d60da408a7bd29
     }
 
     /**
@@ -41,10 +45,10 @@ class ProductController extends Controller
     {
         $this->validate ($request,
         [
-        'title' => 'required',
+        'name' => 'required',
+        'description' => 'required',
         'stock' => 'required',
         'price' => 'required',
-        'image' => 'requiered',
         ]);
 
 
@@ -62,7 +66,7 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        return view('website.products.show', ['product' => Product::findOrFail($product)]);
+        return view('website.products.show', ['product' => Product::findOrFail($id)]);
     }
 
     /**
@@ -90,10 +94,10 @@ class ProductController extends Controller
     {
         $this->validate ($request,
         [
-        'title' => 'required',
+        'name' => 'required',
+        'description' => 'required',
         'stock' => 'required',
         'price' => 'required',
-        'image' => 'requiered',
         ]);
 
 
