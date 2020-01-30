@@ -46,15 +46,9 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
 
-//aqui vinculamos las categorias 
 
-@foreach ($categories as $category )
-<a class="dropdown-item" href="category/{{$category->id}}">
-    {{$category->name}}
-</a>
-@endforeach
 
-//cuando brrms funciona el login y register
+
           
         </div>
       </li>

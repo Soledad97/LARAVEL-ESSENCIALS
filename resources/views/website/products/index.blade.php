@@ -16,7 +16,7 @@
        <div class="col">
 
 
-            @foreach ($products as $product )
+            @foreach ($productos as $product )
 
             <h1>{{$product->name}}</h1>
 
@@ -42,7 +42,7 @@
               
 
             @endforeach
-
+@endforeach
 
          </div>
      </div>
