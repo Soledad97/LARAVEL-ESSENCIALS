@@ -16,7 +16,8 @@
 
 Route::get('/', 'WebsiteController@index');
 
-Route::get('/product', 'ProductController@index');
+
+Route::get('/products', 'ProductController@index');
 Route::get('/product/{id}', 'ProductController@show');
 Route::get('/purchase', 'PurchaseController@index');
 Route::get('/purchase/{id}', 'PurchaseController@show');
@@ -32,17 +33,14 @@ Route::group(['prefix'=>'customer'], function(){
 
 Route::get('/profile', 'UserController@show');
 Route::post('/profile', 'UserController@update');
-
-Route::get('purchase', 'PurchasesController@index');
 Route::get('/purchase/add', 'PurchaseController@create');
+Route::get('/purchase/edit/{id}', 'PurchasesController@edit');
 
 });
 
 //CART
 Route::group(['middleware'=>'cart'], function(){
-Route::get('/cart', 'CartController@index');
-Route::get('/cart', 'CartController@show');
-Route::post('/cart/add', 'CartController@store');
+  Route::patch('/cart', 'CartController@update');
 });
 //ADMIN
 Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
@@ -51,9 +49,10 @@ Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   Route::get('category', 'CategoryController@index');
   Route::get('payment', 'PaymentController@index');
   Route::get('photo', 'PhotoController@index');
-  Route::get('product', 'ProductController@index');
+  //Route::get('product', 'ProductController@index');
   Route::get('role', 'RoleController@index');
   Route::get('user', 'UserController@index');
+  Route::get('purchase', 'PurchasesController@index');
 
   //formularios : views admin.create.blade.php
   Route::get('category/add', 'CategoryController@create');

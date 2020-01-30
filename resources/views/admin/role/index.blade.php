@@ -11,10 +11,10 @@
                 {{$role->name}}
                 <a
                   class="btn btn-sm btn-outline-warning"
-                 href="role/{{$role->id}}/edit">
+                 href="/admin/role/{{$role->id}}/edit">
                     Editar
                 </a>
-                <form action="role/{{$role->id}}" method="post">
+                <form action="/admin/role/{{$role->id}}" method="post">
                     @method('DELETE')
                     @csrf
                     <input type="hidden" name="id" value="{{$role->id}}">

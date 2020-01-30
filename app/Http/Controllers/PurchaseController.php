@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\purchase;
 use App\Payment;
-
+use Auth;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -26,11 +26,11 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        return view('purchase.create',[
+        return view('website.purchase.create',[
             'purchase' => new Purchase,
             'cart' => session('cart'),
             'addresses' => Auth::user()->addresses,
-            'methods' => Payment::all
+            'methods' => Payment::all()
         ]);
     }
 
@@ -64,7 +64,7 @@ class PurchaseController extends Controller
      */
     public function show($id)
     {
-        return view('website.purchase.show', ['purchase' => Purchase::findOrFail($purchase)]);
+        return view('website.purchase.show', ['purchase' => Purchase::findOrFail($id)]);
     }
 
     /**

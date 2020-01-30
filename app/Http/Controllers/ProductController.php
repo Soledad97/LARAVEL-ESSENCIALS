@@ -15,8 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.product.index',['productos' => Product::all()]);
-      
+        return view('website.products.index',['productos' => Product::all()]);
+
     }
 
     /**
@@ -26,8 +26,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create', 
-        
+        return view('admin.products.create',
+
         ['categories' => Category::all(), 'product' => new Product]);
     }
 
@@ -46,8 +46,8 @@ class ProductController extends Controller
         'price' => 'required',
         'image' => 'requiered',
         ]);
-        
-        
+
+
         $product = Product::create($request->all());
 
         return redirect('/products/' . $product->id);
@@ -95,9 +95,9 @@ class ProductController extends Controller
         'price' => 'required',
         'image' => 'requiered',
         ]);
-        
-        
-        
+
+
+
         $product = Product::find($id);
         $product->update($request->all());
         return redirect('/products/' . $product->id);

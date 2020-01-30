@@ -64,6 +64,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+      // Hacer if el mail tiene el @essecial y definir el role_id => 1
+
+      if (isset($data['email'])) {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role_id' => 1
+        ]);
+      }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
