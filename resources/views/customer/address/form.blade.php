@@ -1,6 +1,5 @@
 <form action="{{ url($url) }}" method="post">
     @csrf
-
     @method($method)
 
     <div class="form-group">
@@ -8,7 +7,7 @@
         <input
             class="form-control"
             type="text" name="country"
-            value="{{ old('country', $product->country) }}">
+            value="{{ old('country', $address->country) }}">
 
         <p class="text-danger">{{ $errors->first('country') }}</p>
     </div>
@@ -19,7 +18,7 @@
             class="form-control"
             type="text" name="state"
             value="{{ old('state', $address->state)}}">
-        <p class="text-danger">{{ $errors->first('country') }}</p>
+        <p class="text-danger">{{ $errors->first('state') }}</p>
     </div>
 
     <div class="form-group">
@@ -28,7 +27,7 @@
             class="form-control"
             type="text" name="city"
             value="{{ old('city', $address->city) }}">
-        <p class="text-danger">{{ $errors->first('country') }}</p>
+        <p class="text-danger">{{ $errors->first('city') }}</p>
     </div>
 
     <div class="form-group">
@@ -37,7 +36,7 @@
             class="form-control"
             type="text" name="street"
             value="{{ old('street', $address->street) }}">
-        <p class="text-danger">{{ $errors->first('country') }}</p>
+        <p class="text-danger">{{ $errors->first('city') }}</p>
     </div>
 
     <div class="form-group">

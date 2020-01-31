@@ -14,8 +14,11 @@ class AddressController extends Controller
      */
     public function index()
     {
-        return view('admin.address.index',['direcciones' => Address::all()]);
-        //
+        return view('admin.address.index',[
+            'title' => 'Listado de direcciones',
+            'address' => $address,
+          ]);
+
     }
 
     /**
@@ -25,7 +28,8 @@ class AddressController extends Controller
      */
     public function create()
     {
-        //
+      return view('customer.address.create',[
+          'address' => new Address
     }
 
     /**
@@ -36,7 +40,17 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $this->validate ($request,
+      [
+      'country' => 'required',
+      'state' => 'required',
+      'city' => 'required',
+      'street' => 'required',
+      ]);
+
+      $address = Address::create($request->all());
+
+      return redirect('/customer/address/' . $address->id);
     }
 
     /**
@@ -47,7 +61,10 @@ class AddressController extends Controller
      */
     public function show($id)
     {
-        return view('website.address.show', ['address' => Address::findOrFail($address)]);
+        $address = Address::find(id)
+        return view('admin.address.show', [
+          'address' => $address,
+        ]);
     }
 
     /**
@@ -58,7 +75,9 @@ class AddressController extends Controller
      */
     public function edit($id)
     {
-
+      return view('customer.address.edit',[
+          'address' => Address::findOrFail($id)
+      ]);
     }
 
     /**
@@ -70,7 +89,18 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $this->validate ($request,
+      [
+        'country' => 'required',
+        'state' => 'required',
+        'city' => 'required',
+        'street' => 'required',
+
+      ]);
+
+      $address = Address::find($id);
+      $address->update($request->all());
+      return redirect('/customer/address' . $address->id);
     }
 
     /**
@@ -85,6 +115,6 @@ class AddressController extends Controller
 
       $address->delete();
 
-      return redirect('/address');
+      return redirect('/customer/address');
     }
 }

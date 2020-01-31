@@ -1,17 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
-
   <div class="container">
       <div class="row">
           <div class="col">
-              <h1> Crear Rol </h1>
-              @include('admin.role.form', [
+              <h1> Agregar Nuevo usuario </h1>
+
+              @include('admin.users.form', [
                   'method' => 'post',
-                  'url' => '/admin/role/add',
+                  'url' => '/admin/users/add',
               ])
           </div>
       </div>
   </div>
+
 
 @endsection

@@ -1,4 +1,4 @@
-@extends('layouts/floki-template')
+@extends('layouts.app')
 
 @section('content')
 

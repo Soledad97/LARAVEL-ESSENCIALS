@@ -5,9 +5,9 @@
       <div class="row">
           <div class="col">
               <h1> Nueva Orden </h1>
-              @include('website.purchase.form', [
+              @include('customer.purchase.form', [
                   'method' => 'post',
-                  'url' => '/customer/purchase'
+                  'url' => '/website/purchase/add'
               ])
           </div>
       </div>

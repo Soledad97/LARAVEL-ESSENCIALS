@@ -1,4 +1,4 @@
-  
+
 @extends('layouts.admin')
 
 @section('content')
@@ -9,7 +9,7 @@
 
                 @include('admin.products.form', [
                     'method' => 'patch',
-                    'url' => '/products/' . $product->id
+                    'url' => '/admin/products/' . $product->id
                 ])
             </div>
         </div>

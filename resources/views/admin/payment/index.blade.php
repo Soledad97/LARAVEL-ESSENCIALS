@@ -1,28 +1,19 @@
 @extends('layouts.admin')
-
+@section('name', $title)
 @section('content')
 
-
-  <h1>Listado de Medios de Pago</h1>
-
-  <ul>
-      @foreach ($metodos as $payment)
-          <li class="d-flex justify-content-around">
-              {{$payment->method}}
-              <a
-                class="btn btn-sm btn-outline-warning"
-               href="/admin/payment/{{$payment->id}}/edit">
-                  Editar
-              </a>
-              <form action="/admin/payment/{{$payment->id}}" method="post">
-                  @method('DELETE')
-                  @csrf
-                  <input type="hidden" name="id" value="{{$payment->id}}">
-                  <button type="submit" class="btn btn-outline-danger">     Eliminar
-                  </button>
-              </form>
-          </li>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>{{$title}}</h1>
+      @foreach ($payments as $payment)
+        <div>
+           <a href="/address/{{$payment->id}}">
+          {{$payment->method}}
+           </a>
+        </div>
       @endforeach
-  </ul>
-
+    </div>
+  </div>
+</div>
 @endsection

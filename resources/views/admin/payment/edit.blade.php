@@ -9,7 +9,7 @@
 
                 @include('admin.payment.form', [
                     'method' => 'patch',
-                    'url' => '/admin/payments/' . $payment->id
+                    'url' => '/admin/payment' . $payment->id
                 ])
             </div>
         </div>

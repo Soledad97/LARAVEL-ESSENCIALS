@@ -1,7 +1,6 @@
 <form action="{{ url($url) }}" method="post">
 
   @csrf
-
   @method($method)
 
     <select name="address_id">

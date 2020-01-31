@@ -11,9 +11,6 @@
     <p class="text-danger">{{ $errors->first('method') }}</p>
     <div class="form-group">
       <button class ="btn btn-primary">Guardar</button>
-
     </div>
-
   </div>
-
 </form>

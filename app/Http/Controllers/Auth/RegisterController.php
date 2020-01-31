@@ -53,7 +53,16 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ],
+        $message = [
+          'required' => 'El campo es obligatorio',
+          'string' => 'El campo debe contener solo letras',
+          'unique:users' => 'El mail ya se encuentra registrado',
+          'email' => 'Ingrese un mail con formato usuario@email.com',
+          'min' => ['string' => 'La contraseña debe contener minimo 8 caracteres'],
+          'confirmed' => 'Las contraseñas no coinciden';
         ]);
+
     }
 
     /**
@@ -64,21 +73,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-      // Hacer if el mail tiene el @essecial y definir el role_id => 1
-
-      if (isset($data['email'])) {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'role_id' => 1
-        ]);
-      }
-
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+      //$role = stristr($data['email'], '@essencials') === false ? 0 : 1;
+      $role = (stristr($data['email'], '@')) === '@essencials.com' ? 1 : 0;
+      //dd($role);
+      return User::create([
+          'name' => $data['name'],
+          'email' => $data['email'],
+          'password' => Hash::make($data['password']),
+          'role ' => $role,
+      ]);
     }
 }

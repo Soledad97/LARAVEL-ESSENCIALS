@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 use App\Payment;
 
 class PaymentController extends Controller
-{
-
-
+    {
     public function __construct()
     {
         //$this->middleware('auth');
@@ -21,7 +19,11 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('admin.payment.index',['metodos' => Payment::all()]);
+      return view('admin.payment.index',[
+          'title' => 'Listado de medios de pago',
+          'payment' => $payment,
+        ]);
+
     }
 
     /**
@@ -63,7 +65,10 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        return view('admin.payment.show', ['payment' => Payment::findOrFail($payment)]);
+      $payment = Payment::find(id)
+      return view('website.payment.show', [
+        'payment' => $payment,
+      ]);
     }
 
     /**
