@@ -16,6 +16,21 @@
 
 Route::get('/', 'WebsiteController@index');
 
+//
+//route::get('/categorias', 'WebsiteController@categoria', function ()
+//{   
+//     return View::make('WebsiteController.index');
+//});
+
+//route::any('/', array('as' => 'index', 'products' =>WebsiteController@index));
+
+//route::any('/categorias', array('as' => 'categoria', 'products' =>WebsiteController@contacto));
+//
+
+
+
+
+//
 
 Route::get('/products', 'ProductController@index');
 Route::get('/product/{id}', 'ProductController@show');
