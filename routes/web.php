@@ -15,7 +15,7 @@
   Route::get('/', 'WebsiteController@index');
 
   Route::get('/products', 'ProductController@index');
-  Route::get('/product/{id}', 'ProductController@show');
+  Route::get('/products/{id}', 'ProductController@show');
   Route::get('/category', 'CategoryController@index');
   Route::get('/category/{id}', 'CategoryController@show');
   Route::get('payment', 'PaymentController@show');
