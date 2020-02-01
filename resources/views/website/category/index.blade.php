@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 @section('name', $title)
 @section('content')
 
@@ -6,10 +6,10 @@
   <div class="row">
     <div class="col">
       <h1>{{$title}}</h1>
-      @foreach ($purchases as $purchase)
+      @foreach ($categories as $category)
         <div>
-           <a href="/purchase/{{$purchase->id}}">
-          {{$purchase->total}}
+           <a href="/category/{{$category->id}}">
+          {{$category->name}}
            </a>
         </div>
       @endforeach

@@ -1,15 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Editar direccion</h1>
+                <h1>Editar usuario</h1>
 
-                @include('customer.address.form', [
+                @include('admin.users.form', [
                     'method' => 'patch',
-                    'url' => '/website/address/' . $address->id
+                    'url' => '/admin/users/' . $users->id
                 ])
             </div>
         </div>

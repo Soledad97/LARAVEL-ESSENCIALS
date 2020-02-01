@@ -16,7 +16,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index',['categorias' => Category::all()]);
+      return view('website.category.index',[
+          'title' => 'Listado de categorias',
+          'category' => $category,
+        ]);
+
     }
 
     /**
@@ -53,6 +57,9 @@ class CategoryController extends Controller
 
         $categoria->name = $request->name;
         $categoria->save();
+        $category= Category::create($request->all());
+        return redirect('admin/category');
+
     }
 
     /**
@@ -63,7 +70,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        return view('website.categories.show', ['category' => Category::findOrFail($id)]);
+        return view('website.category.show', ['category' => Category::findOrFail($id)]);
     }
 
     /**
@@ -103,9 +110,11 @@ class CategoryController extends Controller
 
         $categoria->name = $request->name;
         $categoria->save();
+        $category = Cat::find($id);
+        $category->update($request->all());
+        return redirect('admin/category/' . $category->id);
 
-
-    }
+       }
 
     /**
      * Remove the specified resource from storage.
@@ -119,8 +128,7 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect('/categories');
+        return redirect('/admin/category');
 
-        //dd(Category::findOrFail($id));
     }
 }

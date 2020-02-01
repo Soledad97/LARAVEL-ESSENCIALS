@@ -15,7 +15,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.user.index',['usuarios' => User::all()]);
+      return view('admin.user.index',[
+          'title' => 'Listado de Usuarios',
+          'user' => $user,
+        ]);
+        //return view('admin.user.index',['usuarios' => User::all()]);
     }
 
     /**
@@ -25,7 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
-
+      return view('admin.user.create',[
+          'user' => new User
     }
 
     /**
@@ -36,7 +41,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $this->validate ($request,
+      [
+      'role' => 'required',
+      'name' => 'required',
+      'email' => 'required',
+      'password' => 'required',
+      'avatar_id' =>'required',
+      ]);
+
+      $user = User::create($request->all());
+      return redirect('/admin/user/' . $user->id);
     }
 
     /**
@@ -47,7 +62,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('website.user.show', ['user' => User::findOrFail($user)]);
+      $user = User::find(id)
+      return view('admin.user.show', [
+        'user' => $user,
+      ]);
+      //  return view('website.user.show', ['user' => User::findOrFail($user)]);
     }
 
     /**
@@ -58,7 +77,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+      return view('admin.user.edit',[
+          'user' => User::findOrFail($id)
+      ]);
     }
 
     /**
@@ -70,7 +91,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $this->validate ($request,
+      [
+      'role' => 'required',
+      'name' => 'required',
+      'email' => 'required',
+      'password' => 'required',
+      'avatar_id' =>'required',
+      ]);
+      $user = User::find($id);
+      $user->update($request->all());
+      return redirect('admin/user/' . $user->id);
     }
 
     /**
@@ -81,6 +112,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $user = User::findOrFail($id);
+
+      $user->delete();
+
+      return redirect('admin/user');
     }
 }

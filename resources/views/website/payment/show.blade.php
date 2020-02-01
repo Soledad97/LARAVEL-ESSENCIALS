@@ -5,10 +5,9 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h1>{{$address->street}}</h1>
-        <p><b>city: </b> {{ $address->city }} </p>
+        <h1>{{$payment->method}}</h1>
+        <p><b>method: </b> {{ $payment->method }} </p>
       </div>
     </div>
   </div>
-
 @endsection

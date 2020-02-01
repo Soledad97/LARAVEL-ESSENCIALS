@@ -7,7 +7,7 @@
             <h1> Nueva Categoria </h1>
             @include('admin.category.form', [
                 'method' => 'post',
-                'url' => '/admin/category'
+                'url' => '/admin/category/add'
             ])
         </div>
     </div>

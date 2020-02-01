@@ -17,7 +17,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('website.cart.index',['cart' => session('cart')
+        return view('website.cart.index',['carritos' => session('cart')
       ]);
     }
 
@@ -54,8 +54,7 @@ class CartController extends Controller
      */
     public function show($id)
     {
-      //return \Session::get('cart');
-        return view('website.cart.show', ['cart' => Cart::findOrFail($cart)]);
+            return view('website.cart.show', ['cart' => Cart::findOrFail($cart)]);
     }
 
     /**
@@ -79,20 +78,13 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         $cart = session('cart');
-        $product->qty=1;
-
-         Hacer if mismo producto suma
-       if (isset($cart['product_id'])) {
-
-        }
 
         $cart->products()->sync([
           $request->get('product_id') => ['qty' => $request->get('qty')]
         ]);
 
-        session()->put('cart, $cart');
+        session()->put('cart', $cart);
 
-        //return redirect()->route(website.cart.show);??
     }
 
     /**

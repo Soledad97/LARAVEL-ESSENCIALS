@@ -1,27 +1,18 @@
 @extends('layouts.admin')
-
+@section('name', $title)
 @section('content')
-
-
-    <h1>Lista de Roles</h1>
-
-    <ul>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>{{$title}}</h1>
         @foreach ($roles as $role)
-            <li class="d-flex justify-content-around">
-                {{$role->name}}
-                <a
-                  class="btn btn-sm btn-outline-warning"
-                 href="/admin/role/{{$role->id}}/edit">
-                    Editar
-                </a>
-                <form action="/admin/role/{{$role->id}}" method="post">
-                    @method('DELETE')
-                    @csrf
-                    <input type="hidden" name="id" value="{{$role->id}}">
-                    <button type="submit" class="btn btn-outline-danger"> Eliminar</button>
-                </form>
-            </li>
+          <div>
+             <a href="/role/{{$role->id}}">
+            {{$role->name}}
+             </a>
+          </div>
         @endforeach
-    </ul>
-
+      </div>
+    </div>
+  </div>
   @endsection

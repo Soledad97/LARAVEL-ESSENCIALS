@@ -1,1 +1,0 @@
-////muetsra todas las categorias que hay 

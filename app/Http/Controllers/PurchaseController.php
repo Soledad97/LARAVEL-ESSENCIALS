@@ -16,7 +16,12 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        return view('admin.purchase.index',['compras' => Purchase::all()]);
+      return view('admin.purchase.index',[
+          'title' => 'Listado de ordenes',
+          'purchase' => $purchase,
+        ]);
+
+        //return view('admin.purchase.index',['compras' => Purchase::all()]);
     }
 
     /**
@@ -26,7 +31,7 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        return view('website.purchase.create',[
+        return view('customer.purchase.create',[
             'purchase' => new Purchase,
             'cart' => session('cart'),
             'addresses' => Auth::user()->addresses,
@@ -50,10 +55,8 @@ class PurchaseController extends Controller
       'method' => 'requiered',
       ]);
 
-
       $purchase = Purchase::create($request->all());
-
-      return redirect('/purchase/' . $purchase->id);
+      return redirect('/customer/purchase/' . $purchase->id);
     }
 
     /**
@@ -64,7 +67,12 @@ class PurchaseController extends Controller
      */
     public function show($id)
     {
-        return view('website.purchase.show', ['purchase' => Purchase::findOrFail($id)]);
+      $purchase = Purchase::find(id)
+      return view('website.purchase.show', [
+        'purchase' => $purchase,
+      ]);
+
+        //return view('website.purchase.show', ['purchase' => Purchase::findOrFail($id)]);
     }
 
     /**
@@ -75,7 +83,7 @@ class PurchaseController extends Controller
      */
     public function edit($id)
     {
-        return view('purchase.edit',[
+        return view('customer.purchase.edit',[
             'purchase' => Purchase::findOrFail($id),
             'cart' => session('cart'),
             'addresses' => Auth::user()->addresses,

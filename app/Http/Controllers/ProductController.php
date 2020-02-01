@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('website.products.index',['productos' => Product::all()]);
-}
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -46,10 +46,9 @@ class ProductController extends Controller
         'price' => 'required',
         ]);
 
-
         $product = Product::create($request->all());
 
-        return redirect('/products/' . $product->id);
+        return redirect('/admin/products/' . $product->id);
     }
 
     /**
@@ -95,11 +94,9 @@ class ProductController extends Controller
         'price' => 'required',
         ]);
 
-
-
         $product = Product::find($id);
         $product->update($request->all());
-        return redirect('/products/' . $product->id);
+        return redirect('/admin/products/' . $product->id);
     }
 
     /**
@@ -114,6 +111,6 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect('/products');
+        return redirect('/admin/products');
     }
 }

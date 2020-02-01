@@ -8,7 +8,7 @@
 
                 @include('admin.products.form', [
                     'method' => 'post',
-                    'url' => '/products',
+                    'url' => '/admin/products/add',
                 ])
             </div>
         </div>

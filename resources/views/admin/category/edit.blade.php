@@ -7,7 +7,7 @@
             <h1> Editar Categoria </h1>
             @include('admin.category.form', [
                 'method' => 'patch',
-                'url' => 'admin/category/' . $categoria->id 
+                'url' => '/admin/category' . $categoria->id 
             ])
         </div>
     </div>
