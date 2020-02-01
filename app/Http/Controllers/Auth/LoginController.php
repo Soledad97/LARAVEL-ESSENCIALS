@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use App\Category;
+use App\Cart;
+
+
 class LoginController extends Controller
 {
     /*
@@ -35,7 +39,31 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('cart');
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm()
+    {   
+        $categories = Category::all();
+        
+        if(isset(session('cart')->id)){
+
+            $cart = Cart::find(session('cart')->id);
+            return view('auth.login',
+                [
+                    'categories', $categories,
+                    'cart' => $cart
+                ]
+            );
+        }
+        
+        return view('auth.login',
+            [
+                'categories', $categories,
+                'cart' => session('cart')
+            ]
+        );
     }
 
 

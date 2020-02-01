@@ -16,12 +16,12 @@
 
 Route::get('/','WebsiteController@index')->middleware('cart');
 
-Route::get('/products', 'ProductController@index');
-Route::get('/products/{id}', 'ProductController@show');
-Route::get('/category', 'CategoryController@index');
-Route::get('/category/{id}', 'CategoryController@show');
+Route::get('/products', 'ProductController@index')->middleware('cart');
+Route::get('/products/{id}', 'ProductController@show')->middleware('cart');
+Route::get('/category', 'CategoryController@index')->middleware('cart');
+Route::get('/category/{id}', 'CategoryController@show')->middleware('cart');
 
-Route::get('/search', 'SearchController@index');
+Route::get('/search', 'SearchController@index')->middleware('cart');
 
 Route::get('/nosotros', function () {
   return view('nosotros');

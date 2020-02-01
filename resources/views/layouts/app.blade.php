@@ -49,6 +49,23 @@
                                 @endforelse
                             </div>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @forelse ($cart->products as $product)
+                                <li class="dropdown-item">
+                                    {{$product->name}} 
+                                    cantidad
+                                    
+                                    {{$product->quantity}}
+                                </li>
+                                @empty
+                                    <li class="dropdown-item">No Hay Productos</li>
+                                @endforelse
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <form class="form-inline my-2 my-lg-0" method="GET" action="/search">

@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use App\Category;
+use App\Cart;
+
 class RegisterController extends Controller
 {
     /*
@@ -38,7 +41,32 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('cart');
         $this->middleware('guest');
+    }
+
+    public function showRegistrationForm()
+    {
+
+        $categories = Category::all();
+        
+        if(isset(session('cart')->id)){
+
+            $cart = Cart::find(session('cart')->id);
+            return view('auth.register',
+                [
+                    'categories', $categories,
+                    'cart' => $cart
+                ]
+            );
+        }
+        
+        return view('auth.register',
+            [
+                'categories', $categories,
+                'cart' => session('cart')
+            ]
+        );
     }
 
     /**
