@@ -8,8 +8,11 @@
 
 @section('content')
  
-//MUESTRA TODOS LOS PRODUCTOS
-
+@if (isset($termino))
+    <h1>Se busco producto con el termino {{$termino}}</h1>
+@else
+    <h1>Todos nuestro producto</h1>
+@endif
 
 <div class ="container">
     <div class= "row">

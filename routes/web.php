@@ -11,24 +11,20 @@
 |
 
 */
-//WEBSITE
-// website.index.blade.php muestra el home de la pagina
+
 
 Route::get('/', 'WebsiteController@index');
 
-//
-//route::get('/categorias', 'WebsiteController@categoria', function ()
-//{   
-//     return View::make('WebsiteController.index');
-//});
-
-//route::any('/', array('as' => 'index', 'products' =>WebsiteController@index));
-
-//route::any('/categorias', array('as' => 'categoria', 'products' =>WebsiteController@contacto));
-//
 
 
 
+
+Route::get('/nosotros', function () {
+  return view('nosotros');
+});
+
+
+Route::get('/search', 'SearchController@index');
 
 //
 
@@ -39,7 +35,6 @@ Route::get('/category', 'CategoryController@index');
 Route::get('/category/{id}', 'CategoryController@show');
 
 
-// admin.purchases.create.blade.php  muestra el formulario para finalizar la compra
 
 //CUSTOMER
 Route::group(['prefix'=>'customer'], function(){
