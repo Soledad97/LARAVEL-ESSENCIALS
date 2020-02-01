@@ -1,4 +1,4 @@
-@extends('layouts.admin.form')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
@@ -8,7 +8,7 @@
 
                 @include('admin.products.form', [
                     'method' => 'post',
-                    'url' => '/admin/products/add',
+                    'url' => '/admin/product/add',
                 ])
             </div>
         </div>

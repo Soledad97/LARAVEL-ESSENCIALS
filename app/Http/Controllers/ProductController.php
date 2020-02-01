@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Product;
 use App\Category;
+use App\Cart;
+
 class ProductController extends Controller
 {
     /**
@@ -15,7 +17,29 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('website.products.index',['productos' => Product::all()]);
+        $products = Product::inRandomOrder()->limit(4)->get();
+        $categories = Category::all();
+        
+        if(isset(session('cart')->id)){
+
+            $cart = Cart::find(session('cart')->id);
+            return view('website.products.index',
+                [
+                    'productos' => $products , 
+                    'categories', $categories,
+                    'cart' => $cart
+                ]
+            );
+        }
+        
+        return view('website.products.index',
+            [
+                'productos' => $products , 
+                'categories', $categories,
+                'cart' => session('cart')
+            ]
+        );
+
     }
 
     /**
@@ -38,6 +62,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $this->validate ($request,
         [
         'name' => 'required',
@@ -46,9 +72,23 @@ class ProductController extends Controller
         'price' => 'required',
         ]);
 
-        $product = Product::create($request->all());
+        $product = new Product;
+       
+        $product->name = $request->get('name');
+       
+        $product->description = $request->get('description');
+       
+        $product->stock = $request->get('stock');
 
-        return redirect('/admin/products/' . $product->id);
+        $product->price = $request->get('price');
+
+        $product->save();
+
+        foreach ($request->get('categories') as $cat) {
+            $product->categories()->attach($cat);
+        }
+
+        return redirect('products/' . $product->id);
     }
 
     /**
@@ -60,7 +100,30 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        return view('website.products.show', ['product' => Product::findOrFail($id)]);
+
+        $product = Product::findOrFail($id)->first();
+        $categories = Category::all();
+        
+        if(isset(session('cart')->id)){
+
+            $cart = Cart::find(session('cart')->id);
+            return view('website.products.show',
+                [
+                    'product' => $product , 
+                    'categories', $categories,
+                    'cart' => $cart
+                ]
+            );
+        }
+        
+        return view('website.products.show',
+            [
+                'product' => $product , 
+                'categories', $categories,
+                'cart' => session('cart')
+            ]
+        );
+
     }
 
     /**

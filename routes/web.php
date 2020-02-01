@@ -12,25 +12,20 @@
 
 */
 
+//WEBSITE
 
+Route::get('/','WebsiteController@index')->middleware('cart');
+
+Route::get('/products', 'ProductController@index');
+Route::get('/products/{id}', 'ProductController@show');
+Route::get('/category', 'CategoryController@index');
+Route::get('/category/{id}', 'CategoryController@show');
+
+Route::get('/search', 'SearchController@index');
 
 Route::get('/nosotros', function () {
   return view('nosotros');
 });
-
-
-Route::get('/search', 'SearchController@index');
-
-
-
-//WEBSITE
-  Route::get('/', 'WebsiteController@index')->middleware('cart');
-
-  Route::get('/products', 'ProductController@index');
-  Route::get('/products/{id}', 'ProductController@show');
-  Route::get('/category', 'CategoryController@index');
-  Route::get('/category/{id}', 'CategoryController@show');
-
 
 //CUSTOMER
 Route::group(['prefix'=>'customer', 'middleware' => ['cart']], function(){

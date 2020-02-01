@@ -92,8 +92,12 @@
 
   @forelse ($products as $product)
   <div class="card" style="width: 18rem;">
-
+    @if (count($product->photos) !== 0)
     <img class="card-img-top" src="{{ url("image/".$product->photos[0]->source) }}" alt="Card image cap">
+        
+    @else
+    <img class="card-img-top" src="{{ url("image/dummy.png") }}" alt="Card image cap">
+    @endif
     <div class="card-body">
         <h5 class="card-title">{{$product->name}}</h5>
         <p class="card-text">{{$product->description}}</p>

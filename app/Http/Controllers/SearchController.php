@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Product;
 use App\Category; 
+use App\Cart;
 
 class SearchController extends Controller
 {
@@ -19,10 +20,32 @@ class SearchController extends Controller
         
         $name = $request->get('search');
         
-        $products = Product::where('name','LIKE',"%".$name."%")->paginate(5);
+        $products = Product::where('name','LIKE',"%".$name."%")->limit(3)->get();
+
+        $categories = Category::all();
         
+        if(isset(session('cart')->id)){
+
+            $cart = Cart::find(session('cart')->id);
+            return view('website.products.index',
+                [
+                    'productos' => $products , 
+                    'categories', $categories,
+                    'cart' => $cart,
+                    'termino' => $name
+                ]
+            );
+        }
         
-        return view('website.products.index',['productos' => $products, 'termino' => $name]);
+        return view('website.products.index',
+            [
+                'productos' => $products , 
+                'categories', $categories,
+                'cart' => session('cart'),
+                'termino' => $name
+            ]
+        );
+        
 
     }
 
