@@ -7,6 +7,10 @@
       <div class="col">
         <h1>{{$payment->method}}</h1>
         <p><b>method: </b> {{ $payment->method }} </p>
+
+        
+
+
       </div>
     </div>
   </div>
