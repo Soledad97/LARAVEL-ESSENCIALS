@@ -23,10 +23,13 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                  <a class="navbar-brand" href="{{ url('/') }}">
 
                   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Essencials</a>
+                      
+                  <a class="navbar-brand" href="{{ url('/') }}">Essencials</a>
+
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -45,8 +48,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/category/1'">cremas</a>
-          <a class="dropdown-item" href="#">jabones</a>
-          <a class="dropdown-item" href="#">tonicos</a>
+          <a class="dropdown-item" href="/category/2">jabones</a>
+          <a class="dropdown-item" href="/category/3">tonicos</a>
         </div>
       </li>
 

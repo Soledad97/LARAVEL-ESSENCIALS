@@ -46,7 +46,7 @@
    </div>
 
 
-   
+
 
 
    <div class="jumbotron jumbotron-fluid bg-success text-white text-center mb-0 ">
@@ -97,7 +97,7 @@
     <div class="card-body">
         <h5 class="card-title">{{$product->name}}</h5>
         <p class="card-text">{{$product->description}}</p>
-    <a href="/product/{{$product->id}}" class="btn btn-primary">Ver</a>
+    <a href="/products/{{$product->id}}" class="btn btn-primary">Ver</a>
     </div>
   </div>
 @endforeach

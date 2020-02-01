@@ -7,10 +7,10 @@
         <label>Nombre</label>
         <input 
             class="form-control"
-            type="text" name="title" 
-            value="{{ old('title', $product->title) }}">
+            type="text" name="name" 
+            value="{{ old('name', $product->title) }}">
 
-        <p class="text-danger">{{ $errors->first('title') }}</p>
+        <p class="text-danger">{{ $errors->first('name') }}</p>
     </div>
 
     <div class="form-group">
