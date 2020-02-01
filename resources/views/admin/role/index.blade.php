@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('name', $title)
+@section('title', "Roles")
 @section('content')
   <div class="container">
     <div class="row">

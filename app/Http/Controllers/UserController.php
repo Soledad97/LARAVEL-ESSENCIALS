@@ -87,7 +87,7 @@ class UserController extends Controller
       $user->update($request->all());
       return redirect('admin/users/' . $user->id);
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
