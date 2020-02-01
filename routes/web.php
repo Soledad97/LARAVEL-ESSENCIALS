@@ -39,7 +39,6 @@ Route::group(['prefix'=>'customer', 'middleware' => ['cart']], function(){
   Route::post('/address/add', 'AddressController@store');
   Route::get('/address/{id}/edit', 'AddressController@edit');
   Route::patch('/address/{id}', 'AddressController@update');
-  Route::delete('/address/{id}', 'AddressController@destroy');
   Route::post('/cart', 'CartController@store');
   Route::patch('/cart', 'CartController@update');
 

@@ -6,37 +6,37 @@
         <label>Pais</label>
         <input
             class="form-control"
-            type="text" name="country"
-            value="{{ old('country', $address->country) }}">
+            type="text" name="Country"
+            value="{{ old('Country', $address->Country) }}">
 
-        <p class="text-danger">{{ $errors->first('country') }}</p>
+        <p class="text-danger">{{ $errors->first('Country') }}</p>
     </div>
 
     <div class="form-group">
         <label>Provincia</label>
         <input
             class="form-control"
-            type="text" name="state"
-            value="{{ old('state', $address->state)}}">
-        <p class="text-danger">{{ $errors->first('state') }}</p>
+            type="text" name="State"
+            value="{{ old('State', $address->State)}}">
+        <p class="text-danger">{{ $errors->first('State') }}</p>
     </div>
 
     <div class="form-group">
         <label>Ciudad</label>
         <input
             class="form-control"
-            type="text" name="city"
-            value="{{ old('city', $address->city) }}">
-        <p class="text-danger">{{ $errors->first('city') }}</p>
+            type="text" name="City"
+            value="{{ old('City', $address->City) }}">
+        <p class="text-danger">{{ $errors->first('City') }}</p>
     </div>
 
     <div class="form-group">
         <label>Calle</label>
         <input
             class="form-control"
-            type="text" name="street"
-            value="{{ old('street', $address->street) }}">
-        <p class="text-danger">{{ $errors->first('city') }}</p>
+            type="text" name="Street"
+            value="{{ old('Street', $address->Street) }}">
+        <p class="text-danger">{{ $errors->first('Street') }}</p>
     </div>
 
     <div class="form-group">

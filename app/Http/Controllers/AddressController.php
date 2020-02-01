@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Address;
-
+use Auth;
 class AddressController extends Controller
 {
     /**
@@ -43,15 +43,15 @@ class AddressController extends Controller
     {
       $this->validate ($request,
       [
-      'country' => 'required',
-      'state' => 'required',
-      'city' => 'required',
-      'street' => 'required',
+      'Country' => 'required',
+      'State' => 'required',
+      'City' => 'required',
+      'Street' => 'required',
       ]);
 
       $address = Address::create($request->all());
-
-      return redirect('/customer/address/' . $address->id);
+      Auth::user()->address()->attach($address);
+      return redirect('customer/profile');
     }
 
     /**
@@ -92,16 +92,16 @@ class AddressController extends Controller
     {
       $this->validate ($request,
       [
-        'country' => 'required',
-        'state' => 'required',
-        'city' => 'required',
-        'street' => 'required',
+        'Country' => 'required',
+        'State' => 'required',
+        'City' => 'required',
+        'Street' => 'required',
 
       ]);
 
       $address = Address::find($id);
       $address->update($request->all());
-      return redirect('/customer/address' . $address->id);
+      return redirect('/customer/profile');
     }
 
     /**

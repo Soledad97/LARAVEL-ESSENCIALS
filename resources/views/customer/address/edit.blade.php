@@ -9,7 +9,7 @@
 
                 @include('customer.address.form', [
                     'method' => 'patch',
-                    'url' => '/website/address/' . $address->id
+                    'url' => '/customer/address/' . $address->id
                 ])
             </div>
         </div>

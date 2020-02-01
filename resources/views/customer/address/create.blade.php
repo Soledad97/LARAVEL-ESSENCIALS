@@ -8,7 +8,7 @@
 
               @include('customer.address.form', [
                   'method' => 'post',
-                  'url' => '/website/address/add',
+                  'url' => '/customer/address/add',
               ])
           </div>
       </div>

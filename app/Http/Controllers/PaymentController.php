@@ -79,6 +79,8 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
+      $payment = Payment::find(id);
+
       return view('admin.payment.edit',[
           'payment' => Payment::findOrFail($id)
       ]);
@@ -101,7 +103,7 @@ class PaymentController extends Controller
 
       $payment = Payment::find($id);
       $payment->update($request->all());
-      return redirect('admin/payment/' . $payment->id);
+      return redirect('admin/payment/');
     }
 
     /**

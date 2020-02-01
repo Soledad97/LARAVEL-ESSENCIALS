@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-      return view('admin.user.index',[
+      return view('admin.users.index',[
           'title' => 'Listado de Usuarios',
           'user' => $user,
         ]);
@@ -32,31 +32,11 @@ class UserController extends Controller
      */
     public function create()
     {
-      return view('admin.user.create',[
+      return view('admin.users.create',[
           'user' => new User
       ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-      $this->validate ($request,
-      [
-      'role' => 'required',
-      'name' => 'required',
-      'email' => 'required',
-      'password' => 'required',
-      'avatar_id' =>'required',
-      ]);
-
-      $user = User::create($request->all());
-      return redirect('/admin/user/' . $user->id);
-    }
 
     /**
      * Display the specified resource.
@@ -67,7 +47,7 @@ class UserController extends Controller
     public function show($id)
     {
       $user = User::find(id);
-      return view('admin.user.show', [
+      return view('admin.users.show', [
         'user' => $user,
       ]);
       //  return view('website.user.show', ['user' => User::findOrFail($user)]);
@@ -81,7 +61,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-      return view('admin.user.edit',[
+      return view('admin.users.edit',[
           'user' => User::findOrFail($id)
       ]);
     }
@@ -105,7 +85,7 @@ class UserController extends Controller
       ]);
       $user = User::find($id);
       $user->update($request->all());
-      return redirect('admin/user/' . $user->id);
+      return redirect('admin/users/' . $user->id);
     }
 
     /**
@@ -120,6 +100,6 @@ class UserController extends Controller
 
       $user->delete();
 
-      return redirect('admin/user');
+      return redirect('admin/users');
     }
 }
