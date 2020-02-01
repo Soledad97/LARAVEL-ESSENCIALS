@@ -36,7 +36,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/products/add">Nuevo Producto</a>
+                            <a class="nav-link" href="/admin/product/add">Nuevo Producto</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/category/add">Nueva Categoria</a>

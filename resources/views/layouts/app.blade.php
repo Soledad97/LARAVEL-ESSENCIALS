@@ -31,6 +31,23 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
+                    @if (Auth::user()->role_id == 0)
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/product/add">Nuevo Producto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/category/add">Nueva Categoria</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/role">Roles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/address">Direcciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/users">Usuarios</a>
+                        </li>
+                    @else
                         <li class="nav-item">
                             <a class="nav-link" href="/nosotros">Nosotros</a>
                         </li>
@@ -49,6 +66,8 @@
                                 @endforelse
                             </div>
                         </li>
+                    @endif
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Dropdown
