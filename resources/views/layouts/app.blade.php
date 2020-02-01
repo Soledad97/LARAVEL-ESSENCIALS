@@ -7,13 +7,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title','Essencial')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
@@ -22,58 +23,39 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                  <a class="navbar-brand" href="{{ url('/') }}">
-
-                  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                      
+            <div class="container">                  
                   <a class="navbar-brand" href="{{ url('/') }}">Essencials</a>
-
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-       <a class="nav-link" href="{{URL::route('home')}}">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/nosotros">Nosotros</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/category/1'">cremas</a>
-          <a class="dropdown-item" href="/category/2">jabones</a>
-          <a class="dropdown-item" href="/category/3">tonicos</a>
-        </div>
-      </li>
-
-
-        </div>
-      </li>
-
-    </ul>
-        <form class="form-inline my-2 my-lg-0" method="GET" action="/search">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="/nosotros">Nosotros</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Categrias
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @forelse ($categories as $category)
+                                    <a class="dropdown-item" 
+                                    href="/category/{{$category->id}}">
+                                        {{$category->name}}
+                                    </a>
+                                @empty
+                                    <li class="dropdown-item">No hay categorias</li>    
+                                @endforelse
+                            </div>
+                        </li>
                     </ul>
-
-                    <!-- Right Side Of Navbar -->
+                </div>
+                <form class="form-inline my-2 my-lg-0" method="GET" action="/search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
@@ -98,17 +80,13 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-
-
-                                      
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">          
                                         @csrf
                                     </form>
                                 </div>
                             </li>
                         @endguest
                     </ul>
-                </div>
             </div>
         </nav>
 

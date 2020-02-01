@@ -34,6 +34,15 @@
         <textarea class="form-control" name="description">{{ $product->description }}</textarea>
     </div>
 
+    <select name="categories[]" class="custom-select" multiple>
+        @forelse ($categories as $c)
+            <option value="{{$c->id}}">{{$c->name}}</option>
+        @empty
+            <option value="">No hay categorias</option>
+        @endforelse
+    
+    </select>
+
     <div class="form-group">
         <button class="btn btn-primary">Guardar</button>
     </div>

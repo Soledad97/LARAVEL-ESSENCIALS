@@ -1,10 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\purchase;
-use App\Payment;
-use Auth;
 use Illuminate\Http\Request;
+
+use App\Purchase;
+use App\Payment;
+use App\Product;
+use App\Category;
+use App\Address;
+use App\Cart;
+use App\User;
+
 
 class PurchaseController extends Controller
 {

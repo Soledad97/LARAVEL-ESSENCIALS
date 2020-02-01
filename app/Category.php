@@ -8,8 +8,8 @@ class Category extends Model
 {
     protected $fillable = ['name', 'icon_id'];
     
-    public function products () {
-        return $this->belongsToMany('App\Product', 'product_category', 'product_id', 'category_id');
+    public function products() {
+        return $this->belongsToMany('App\Product', 'product_category', 'category_id','product_id');
     }
 
     public function icon(){

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Category;
 use App\Photo;
+use App\Cart;
 
 class CategoryController extends Controller
 {
@@ -16,10 +17,25 @@ class CategoryController extends Controller
      */
     public function index()
     {
-      return view('website.category.index',[
-          'title' => 'Listado de categorias',
-          'category' => $category,
-        ]);
+        $categories = Category::all();
+        
+        if(isset(session('cart')->id)){
+
+            $cart = Cart::find(session('cart')->id);
+            return view('website.index',
+                [
+                    'categories', $categories,
+                    'cart' => $cart
+                ]
+            );
+        }
+        
+        return view('website.category.index',
+            [
+                'categories', $categories,
+                'cart' => session('cart')
+            ]
+        );
 
     }
 
@@ -70,7 +86,27 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        return view('website.category.show', ['category' => Category::findOrFail($id)]);
+        $categories = Category::all();
+
+        if(isset(session('cart')->id)){
+
+            $cart = Cart::find(session('cart')->id);
+            return view('website.category.show',
+                [
+                    'category' => Category::findOrFail($id),
+                    'categories' => $categories,
+                    'cart' => $cart
+                ]
+            );
+        }
+        
+        return view('website.category.show',
+            [
+                'category' => Category::findOrFail($id),
+                'categories' => $categories,
+                'cart' => session('cart')
+            ]
+        );
     }
 
     /**
