@@ -60,7 +60,7 @@ class RegisterController extends Controller
           'unique:users' => 'El mail ya se encuentra registrado',
           'email' => 'Ingrese un mail con formato usuario@email.com',
           'min' => ['string' => 'La contraseña debe contener minimo 8 caracteres'],
-          'confirmed' => 'Las contraseñas no coinciden';
+          'confirmed' => 'Las contraseñas no coinciden'
         ]);
 
     }

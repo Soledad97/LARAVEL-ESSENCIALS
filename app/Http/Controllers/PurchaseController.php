@@ -67,7 +67,7 @@ class PurchaseController extends Controller
      */
     public function show($id)
     {
-      $purchase = Purchase::find(id)
+      $purchase = Purchase::find(id);
       return view('website.purchase.show', [
         'purchase' => $purchase,
       ]);

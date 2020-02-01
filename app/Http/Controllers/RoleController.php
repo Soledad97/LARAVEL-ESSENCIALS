@@ -62,7 +62,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-      $role = Role::find(id)
+      $role = Role::find(id);
       return view('admin.role.show', [
         'role' => $role,
       ]);
