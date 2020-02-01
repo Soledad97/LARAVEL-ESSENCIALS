@@ -30,6 +30,7 @@ class AddressController extends Controller
     {
       return view('customer.address.create',[
           'address' => new Address
+      ]);
     }
 
     /**
@@ -61,7 +62,7 @@ class AddressController extends Controller
      */
     public function show($id)
     {
-        $address = Address::find(id)
+        $address = Address::find(id);
         return view('admin.address.show', [
           'address' => $address,
         ]);

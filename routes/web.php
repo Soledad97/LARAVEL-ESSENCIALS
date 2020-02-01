@@ -24,13 +24,13 @@ Route::get('/search', 'SearchController@index');
 
 
 //WEBSITE
-  Route::get('/', 'WebsiteController@index');
+  Route::get('/', 'WebsiteController@index')->middleware('cart');
 
   Route::get('/products', 'ProductController@index');
   Route::get('/products/{id}', 'ProductController@show');
   Route::get('/category', 'CategoryController@index');
   Route::get('/category/{id}', 'CategoryController@show');
-  Route::get('payment', 'PaymentController@show');
+
 
 //CUSTOMER
 Route::group(['prefix'=>'customer', 'middleware' => ['cart']], function(){
@@ -38,13 +38,14 @@ Route::group(['prefix'=>'customer', 'middleware' => ['cart']], function(){
   Route::get('/profile', 'UserController@show');
   Route::patch('/profile', 'UserController@update');
   Route::get('/purchase/add', 'PurchaseController@create');
-  Route::get('/purchase/edit/{id}', 'PurchasesController@edit');
+  Route::get('/purchase/edit/{id}', 'PurchaseController@edit');
   Route::post('/purchase/add', 'PurchaseController@store');
   Route::get('/address/add', 'AddressController@create');
   Route::post('/address/add', 'AddressController@store');
   Route::get('/address/{id}/edit', 'AddressController@edit');
   Route::patch('/address/{id}', 'AddressController@update');
   Route::delete('/address/{id}', 'AddressController@destroy');
+  Route::post('/cart', 'CartController@store');
   Route::patch('/cart', 'CartController@update');
 
 });
@@ -61,7 +62,7 @@ Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   //Route::get('product', 'ProductController@index');
   Route::get('role', 'RoleController@index');
   Route::get('user', 'UserController@index');
-  Route::get('purchase', 'PurchasesController@index');
+  Route::get('purchase', 'PurchaseController@index');
   //formularios : views admin.create.blade.php
   Route::get('category/add', 'CategoryController@create');
   Route::get('role/add', 'RoleController@create');
@@ -73,9 +74,11 @@ Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   Route::post('role/add', 'RoleController@store');
   Route::post('payment/add', 'PaymentController@store');
   Route::post('product/add', 'ProductController@store');
+
+  Route::get('payment/{id}', 'PaymentController@show');
   //formularios views admin.edit.blade.php
   Route::get('category/{id}/edit', 'CategoryController@edit');
-  Route::get('role/{id}/edit', 'RoleControler@edit');
+  Route::get('role/{id}/edit', 'RoleController@edit');
   Route::get('payment/{id}/edit', 'PaymentController@edit');
   Route::get('product/{id}/edit', 'ProductController@edit');
   Route::get('photos/{id}/edit', 'PhotoController@edit');

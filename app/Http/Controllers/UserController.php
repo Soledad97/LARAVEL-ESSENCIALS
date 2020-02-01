@@ -31,6 +31,7 @@ class UserController extends Controller
     {
       return view('admin.user.create',[
           'user' => new User
+      ]);
     }
 
     /**
@@ -62,7 +63,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-      $user = User::find(id)
+      $user = User::find(id);
       return view('admin.user.show', [
         'user' => $user,
       ]);

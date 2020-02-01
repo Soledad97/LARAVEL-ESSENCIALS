@@ -14,6 +14,9 @@ class Product extends Model
     public function photos(){
         return $this->belongsToMany('App\Photo', 'product_photo', 'product_id', 'photo_id');
     }
+    public function carts(){
+        return $this->belongsToMany('App\Cart','product_cart', 'product_id', 'cart_id');
+      }
   }
 
     

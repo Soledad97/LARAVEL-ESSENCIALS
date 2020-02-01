@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
-
+use App\Cart;
 class WebsiteController extends Controller
 {
     /**
@@ -15,11 +15,11 @@ class WebsiteController extends Controller
      */
     public function index()
     {
+        $cart = Cart::findOrFail(session('cart')->id)->first();
         $products = Product::all();
         $categories = Category::all();
-        
         //va a entrar a website ->carpeta products y muestra lo q contiene el index de  producto ('website.index')// 
-        return view('website.index', ['products' => $products,'categories' => $categories]);
+        return view('website.index', ['products' => $products,'categories' => $categories, 'cart' => $cart ]);
     }
 
 

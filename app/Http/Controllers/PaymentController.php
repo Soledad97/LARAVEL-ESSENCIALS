@@ -54,7 +54,7 @@ class PaymentController extends Controller
 
       $payment = Payment::create($request->all());
 
-      return redirect('admin/payment');
+      return redirect('admin/payment/add');
     }
 
     /**
@@ -65,8 +65,8 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-      $payment = Payment::find(id)
-      return view('website.payment.show', [
+      $payment = Payment::find(id);
+      return view('admin.payment.show', [
         'payment' => $payment,
       ]);
     }
