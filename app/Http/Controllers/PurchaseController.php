@@ -10,6 +10,7 @@ use App\Category;
 use App\Address;
 use App\Cart;
 use App\User;
+use Auth;
 
 
 class PurchaseController extends Controller
@@ -22,9 +23,10 @@ class PurchaseController extends Controller
      */
     public function index()
     {
+      $purchases = Purchase::all();   
       return view('admin.purchase.index',[
           'title' => 'Listado de ordenes',
-          'purchase' => $purchase,
+          'purchases' => $purchases,
         ]);
 
         //return view('admin.purchase.index',['compras' => Purchase::all()]);
@@ -73,7 +75,7 @@ class PurchaseController extends Controller
      */
     public function show($id)
     {
-      $purchase = Purchase::find(id);
+      $purchase = Purchase::find($id);
       return view('website.purchase.show', [
         'purchase' => $purchase,
       ]);

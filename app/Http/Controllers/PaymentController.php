@@ -19,9 +19,12 @@ class PaymentController extends Controller
      */
     public function index()
     {
+           $payments = Payment::all();    
+
       return view('admin.payment.index',[
+                
           'title' => 'Listado de medios de pago',
-          'payment' => $payment,
+          'items' => $payments
         ]);
 
     }
@@ -54,7 +57,7 @@ class PaymentController extends Controller
 
       $payment = Payment::create($request->all());
 
-      return redirect('admin/payment/add');
+      return redirect('admin/payment');
     }
 
     /**
@@ -63,9 +66,11 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     
     public function show($id)
     {
-      $payment = Payment::find(id);
+      $payment = Payment::find($id);
       return view('admin.payment.show', [
         'payment' => $payment,
       ]);
@@ -79,7 +84,7 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-      $payment = Payment::find(id);
+      $payment = Payment::find($id);
 
       return view('admin.payment.edit',[
           'payment' => Payment::findOrFail($id)
@@ -103,7 +108,7 @@ class PaymentController extends Controller
 
       $payment = Payment::find($id);
       $payment->update($request->all());
-      return redirect('admin/payment/');
+      return redirect('admin/payment');
     }
 
     /**

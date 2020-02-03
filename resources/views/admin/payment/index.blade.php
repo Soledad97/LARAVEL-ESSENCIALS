@@ -5,10 +5,10 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1>{{$title}}</h1>
-      @foreach ($payments as $payment)
+      <h1>{{ $title }}</h1>
+      @foreach ($items as $payment)
         <div>
-           <a href="/address/{{$payment->id}}">
+           <a href="/payment/{{$payment->id}}">
           {{$payment->method}}
            </a>
         </div>
