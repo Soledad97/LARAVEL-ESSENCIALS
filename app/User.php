@@ -47,4 +47,9 @@ class User extends Authenticatable
     public function address(){
       return $this->belongsToMany('App\Address', 'user_address', 'user_id', 'address_id');
     }
+
+    public function carts() 
+    {
+      return $this->hasMany(Cart::class);
+    }
 }

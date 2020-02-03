@@ -16,8 +16,16 @@ class CartMiddleware
      */
     public function handle($request, Closure $next)
     {
-      if (!session('cart')) {
-        session()->put('cart', new Cart);
+      if (session('cart')) {
+        $cart = session('cart');
+
+        if (!$cart->user_id && auth()->check()) {
+          $cart->update(['user_id' => auth()->id()]);
+        }
+
+        session()->put('cart', $cart);
+      } else {
+        session()->put('cart', Cart::create([]));
       }
 
       return $next($request);

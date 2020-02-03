@@ -27,6 +27,10 @@ Route::get('/nosotros', function () {
   return view('nosotros');
 });
 
+Route::get('/cart', function () {
+  return session('cart');
+})->middleware('cart');
+
 //CUSTOMER
 Route::group(['prefix'=>'customer', 'middleware' => ['cart']], function(){
 

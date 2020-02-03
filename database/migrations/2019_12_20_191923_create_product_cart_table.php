@@ -22,7 +22,7 @@ class CreateProductCartTable extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 
             $table->unsignedBigInteger('cart_id');
-            $table->foreign('cart_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
 
             $table->timestamps();
         });
