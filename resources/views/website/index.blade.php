@@ -1,9 +1,14 @@
 @extends('layouts.app')
 
 
-@section('title')
-     listado productos
+@section('title',)
+     Essencials
      
+@endsection
+
+@section('css')
+  <link rel="stylesheet" href="{{ asset('css/estilo.css') }}"/>
+
 @endsection
 
 
@@ -55,17 +60,17 @@
         <div class="row">
             <div class="col-12 col-md-4">
                 <a href="?action=categoria&categoria=cremas">
-                    <img src="/image/pomada.jpg" alt="" class="rounded-circle img-fluid">
+                    <img src="/image/lAcomunidad.png" alt="" class="rounded-circle img-fluid">
                 </a>
             </div>
             <div class="col-12 col-md-4">
                 <a href="?action=categoria&categoria=jabones">
-                    <img src="/image/pomada.jpg" alt="" class="rounded-circle img-fluid">
+                    <img src="/image/laentrega.png" alt="" class="rounded-circle img-fluid">
                 </a>
             </div>
             <div class="col-12 col-md-4">
-                <a href="Products/indexPr.php">
-                    <img src="/image/pomada.jpg" alt="" class="rounded-circle img-fluid">
+                <a href="?action=categoria&categoria=aceites">
+                    <img src="/image/elmediambiente.png" alt="" class="rounded-circle img-fluid">
                 </a>
             </div>
         </div>
@@ -89,17 +94,18 @@
 
 
 @if (count($products) > 0)
+<div class="container d-flex flex-wrap justify-content-between">
 
   @forelse ($products as $product)
-  <div class="card" style="width: 18rem;">
+  <div class="card mb-2" style="width: 18rem;">
     @if (count($product->photos) !== 0)
     <img class="card-img-top" src="{{ url("image/".$product->photos[0]->source) }}" alt="Card image cap">
-        
+    
     @else
-    <img class="card-img-top" src="{{ url("image/dummy.png") }}" alt="Card image cap">
+    <img class="card-img-top" src="{{ url("image/default.png") }}" alt="Card image cap">
     @endif
     <div class="card-body">
-        <h5 class="card-title">{{$product->name}}</h5>
+      <h5 class="card-title">{{$product->name}}</h5>
         <p class="card-text">{{$product->description}}</p>
         <a href="/products/{{$product->id}}" class="btn btn-primary">Ver</a>
         @auth
@@ -110,16 +116,17 @@
               <input type="hidden" name="qty" value="1">
               <button type="submit" class="btn btn-sm btn-outline-success">Agregar</button>
             </form>
-        @endauth
+            @endauth
+          </div>
+        </div>
+        
+        @empty
+        
+        Vuelve mas tarde
+        
+        @endforelse
     </div>
-  </div>
-      
-  @empty
-
-  Vuelve mas tarde
-      
-  @endforelse
-
+        
 @endif
 
 @endsection

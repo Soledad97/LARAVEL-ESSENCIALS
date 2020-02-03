@@ -84,8 +84,8 @@ class ProductController extends Controller
 
         $product->save();
 
-        foreach ($request->get('categories') as $cat) {
-            $product->categories()->attach($cat);
+        foreach ($request->get('categories') as $category) {
+            $product->categories()->attach($category);
         }
 
         return redirect('products/' . $product->id);

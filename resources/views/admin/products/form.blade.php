@@ -35,8 +35,8 @@
     </div>
 
     <select name="categories[]" class="custom-select" multiple>
-        @forelse ($categories as $c)
-            <option value="{{$c->id}}">{{$c->name}}</option>
+        @forelse ($categories as $category)
+            <option value="{{$category->id}}">{{$category->name}}</option>
         @empty
             <option value="">No hay categorias</option>
         @endforelse

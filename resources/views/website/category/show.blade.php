@@ -12,7 +12,7 @@
         <img class="card-img-top" src="{{ url("image/".$product->photos[0]->source) }}" alt="Card image cap">
             
         @else
-        <img class="card-img-top" src="{{ url("image/dummy.png") }}" alt="Card image cap">
+        <img class="card-img-top" src="{{ url("image/default.png") }}" alt="Card image cap">
         @endif
         <div class="card-body">
             <h5 class="card-title">{{$product->name}}</h5>

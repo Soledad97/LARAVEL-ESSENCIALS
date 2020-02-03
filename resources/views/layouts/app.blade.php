@@ -17,13 +17,29 @@
 
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
+
+    <style>
+        .bg-home{
+          background-image: url("image/textura02.jpg");
+          background-repeat: repeat;
+    
+        }
+      </style>
+
 </head>
-<body>
+<body class="bg-home">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-success shadow-sm">
             <div class="container">                  
+                <i class="fas fa-x2 fa-seedling"></i>
                   <a class="navbar-brand" href="{{ url('/') }}">Essencials</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -51,6 +67,8 @@
                             </li>
                             @endif
                         @endauth
+
+
                         <li class="nav-item">
                             <a class="nav-link" href="/nosotros">Nosotros</a>
                         </li>
@@ -72,7 +90,10 @@
                         
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
+                            
+
+                                <i class="fas fa-shopping-basket"></i>
+
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 @forelse ($cart->products as $product)
@@ -139,4 +160,33 @@
         </main>
     </div>
 </body>
+
+
+
+<footer class="container-fluid p-5 m-0 bg-success text-white">
+    <div class="row justify-content-around">
+        <h3>Essencials</h3>
+        <p>&copy Copyright - 2019</p>
+        <div class="row justify-content-around">
+            <div class="col-3">
+                <a href="http://" class="text-white" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-2x fa-facebook"></i>
+                </a>
+            </div>
+            <div class="col-3">
+                <a href="http://" class="text-white" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-2x fa-twitter"></i>
+                </a>
+            </div>
+            <div class="col-3">
+                <a href="http://" class="text-white" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-2x fa-instagram"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+</footer>
+
 </html>
