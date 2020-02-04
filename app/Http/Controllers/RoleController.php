@@ -15,12 +15,13 @@ class RoleController extends Controller
      */
     public function index()
     {
+      $roles = Role::all();   
       return view('admin.role.index',[
           'title' => 'Listado de Roles',
-          'role' => $role,
+          'roles' => $roles,
         ]);
-
-      //  return view('admin.role.index',['roles' => Role::all()]);
+        return redirect('/admin/role/show');
+      // redirect (view('admin.role.index',['roles' => Role::all()]));
 
     }
 

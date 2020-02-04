@@ -40,13 +40,13 @@ class CartController extends Controller
     public function store(Request $request)
     {
       $cart = session('cart');
-      $cart->user_id = $request->get('user_id');
-      $cart->save();
+
       $cart->products()->attach(
         $request->get('product_id'), ['quantity'=>$request->get('qty')]
       );
 
       session()->put('cart', $cart);
+
       return redirect('/');
     }
 

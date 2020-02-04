@@ -18,6 +18,14 @@
             </option>
         @endforeach
     </select>
+    
+    <select name="cart_id">
+        @foreach ($carts as $cart)
+            <option value="{{$cart->id}}">
+                {{$cart->session('cart')}}
+            </option>
+        @endforeach
+    </select>
 
 
 

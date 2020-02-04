@@ -16,13 +16,27 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+ /*   public function index()
     {
+      $users = User::all();    
+
       return view('admin.users.index',[
           'title' => 'Listado de Usuarios',
-          'user' => $user,
+          'users' => $users,
         ]);
         //return view('admin.user.index',['usuarios' => User::all()]);
+    }
+*/
+    public function index()
+    {
+           $users = User::all();    
+
+      return view('admin.users.index',[
+                
+          'title' => 'Listado de usuarios',
+          'users' => $users
+        ]);
+      //redirect (profile)
     }
 
     /**
@@ -46,7 +60,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-      $user = User::find(id);
+      $user = User::find($id);
       return view('admin.users.show', [
         'user' => $user,
       ]);

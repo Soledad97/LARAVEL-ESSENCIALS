@@ -14,9 +14,10 @@ class AddressController extends Controller
      */
     public function index()
     {
+      $addresses = Address::all();   
         return view('admin.address.index',[
             'title' => 'Listado de direcciones',
-            'address' => $address,
+            'addresses' => $addresses,
           ]);
 
     }
@@ -62,7 +63,7 @@ class AddressController extends Controller
      */
     public function show($id)
     {
-        $address = Address::find(id);
+        $address = Address::find($id);
         return view('admin.address.show', [
           'address' => $address,
         ]);
