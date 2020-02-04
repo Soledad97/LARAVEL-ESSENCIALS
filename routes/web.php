@@ -71,7 +71,7 @@ Route::group(['prefix'=>'admin', 'middlerware'=>[]], function(){
   Route::post('category/add', 'CategoryController@store');
   Route::post('role/add', 'RoleController@store');
   Route::post('payment/add', 'PaymentController@store');
-  Route::post('product/add', 'ProductController@store');
+  Route::post('products/add', 'ProductController@store');
 
   Route::get('payment/{id}', 'PaymentController@show');
   //formularios views admin.edit.blade.php

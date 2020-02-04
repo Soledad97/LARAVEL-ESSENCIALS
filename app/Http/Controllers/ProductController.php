@@ -62,8 +62,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $this->validate ($request,
         [
         'name' => 'required',
@@ -84,8 +82,10 @@ class ProductController extends Controller
 
         $product->save();
 
-        foreach ($request->get('categories') as $category) {
-            $product->categories()->attach($category);
+        if ($request->has('categories')) {
+            foreach ($request->get('categories') as $category) {
+                $product->categories()->attach($category);
+            }
         }
 
         return redirect('products/' . $product->id);
