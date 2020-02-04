@@ -9,7 +9,7 @@
 
                 @include('admin.products.form', [
                     'method' => 'patch',
-                    'url' => '/admin/products/' . $product->id
+                    'url' => '/admin/product/' . $product->id
                 ])
             </div>
         </div>

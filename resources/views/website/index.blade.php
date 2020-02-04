@@ -109,6 +109,8 @@
       <h5 class="card-title">{{$product->name}}</h5>
         <p class="card-text">{{$product->description}}</p>
         <a href="/products/{{$product->id}}" class="btn btn-primary">Ver</a>
+        
+        
         @auth
             <form action="customer/cart" method="POST" enctype="multipart/form-data">
               @csrf
@@ -118,6 +120,8 @@
               <button type="submit" class="btn btn-sm btn-outline-success">Agregar</button>
             </form>
             @endauth
+
+
           </div>
         </div>
         

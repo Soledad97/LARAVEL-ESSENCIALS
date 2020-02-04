@@ -136,7 +136,7 @@ class ProductController extends Controller
     {
         return view('admin.products.edit', [
             'categories' => Category::all(),
-            'product' => Product::findOrFail($product)
+            'product' => Product::findOrFail($id)->first()
         ]);
     }
 
@@ -159,7 +159,8 @@ class ProductController extends Controller
 
         $product = Product::find($id);
         $product->update($request->all());
-        return redirect('/admin/products/' . $product->id);
+        
+        return redirect('products/' . $product->id);
     }
 
     /**
@@ -171,9 +172,8 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
-
         $product->delete();
 
-        return redirect('/admin/products');
+        return redirect('/products');
     }
 }

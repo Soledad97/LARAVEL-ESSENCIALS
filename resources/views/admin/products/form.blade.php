@@ -8,7 +8,7 @@
         <input 
             class="form-control"
             type="text" name="name" 
-            value="{{ old('name', $product->title) }}">
+            value="{{ old('name', $product->name) }}">
 
         <p class="text-danger">{{ $errors->first('name') }}</p>
     </div>
