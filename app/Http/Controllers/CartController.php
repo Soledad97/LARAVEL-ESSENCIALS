@@ -45,6 +45,7 @@ class CartController extends Controller
       $cart->products()->attach(
         $request->get('product_id'), ['quantity'=>$request->get('qty')]
       );
+
       session()->put('cart', $cart);
       return redirect('/');
     }
