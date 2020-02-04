@@ -73,8 +73,7 @@ class CategoryController extends Controller
 
         $categoria->name = $request->name;
         $categoria->save();
-        $category= Category::create($request->all());
-        return redirect('admin/category');
+        return redirect('/');
 
     }
 

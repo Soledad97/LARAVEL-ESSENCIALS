@@ -41,15 +41,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/category/add">Nueva Categoria</a>
                         </li>
-                        <li class="nav-item">
+                       {{--  <li class="nav-item">
                             <a class="nav-link" href="/admin/role">Roles</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/address">Direcciones</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="/admin/user">Usuarios</a>
-                        </li>
+                        </li> --}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->

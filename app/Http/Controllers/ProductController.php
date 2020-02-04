@@ -83,9 +83,9 @@ class ProductController extends Controller
         $product->save();
 
         if ($request->has('categories')) {
-            foreach ($request->get('categories') as $category) {
-                $product->categories()->attach($category);
-            }
+ //           foreach ($request->get('categories') as $category) {
+                $product->categories()->attach($request->get('categories'));
+   //         }
         }
 
         return redirect('products/' . $product->id);
@@ -100,8 +100,7 @@ class ProductController extends Controller
 
     public function show($id)
     {
-
-        $product = Product::findOrFail($id)->first();
+        $product = Product::findOrFail($id);
         $categories = Category::all();
         
         if(isset(session('cart')->id)){
@@ -136,8 +135,8 @@ class ProductController extends Controller
     {
         return view('admin.products.edit', [
             'categories' => Category::all(),
-            'product' => Product::findOrFail($id)->first()
-        ]);
+            'product' => Product::findOrFail($id),
+           ]);
     }
 
     /**

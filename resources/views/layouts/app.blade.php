@@ -56,7 +56,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin/category/add">Nueva Categoria</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="/admin/role">Roles</a>
                             </li>
                             <li class="nav-item">
@@ -64,7 +64,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin/users">Usuarios</a>
-                            </li>
+                            </li> --}}
                             @endif
                         @endauth
 
