@@ -1,6 +1,10 @@
 
 @extends('layouts.admin')
 
+@section('css')
+  <link rel="stylesheet" href="{{ asset('css/estilo.css') }}"/>
+
+
 @section('content')
     <div class="container">
         <div class="row">

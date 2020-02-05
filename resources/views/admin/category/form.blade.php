@@ -11,11 +11,11 @@
     </div>
 
     <div class="form-group">
-        <label for="">  Icono </label>
+        <label for=""> Foto </label>
         <input
             class="form-Control"
-            type="file" name="icon">
-        <p class="text-danger">{{ $errors->first('icon')}}</p>
+            type="file" name="photo">
+        <p class="text-danger">{{ $errors->first('photo')}}</p>
     </div>
 
     <div class="form-group">

@@ -117,7 +117,7 @@
               <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
               <input type="hidden" name="product_id" value="{{$product->id}}">
               <input type="hidden" name="qty" value="1">
-              <button type="submit" class="btn btn-sm btn-outline-success">Agregar</button>
+              <button type="submit" class="btn btn-sm btn-outline-success">Agregar al carrito</button>
             </form>
             @endauth
 

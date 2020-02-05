@@ -61,18 +61,19 @@ class CategoryController extends Controller
     {
         $categoria = new Category;
 
-        if($request->file('icon')){
-            $icono = new Photo;
-            $imageName = time().'.'.$request->file('icon')->getClientOriginalExtension();
-            $request->file('icon')->move(public_path('categories'), $imageName);
-            $icono->source = $imageName;
-            $icono->type = "category";
-            $icono->save();
-            $categoria->icon_id = $icono->id;
+        if($request->file('photo')){
+            $photo = new Photo;
+            $imageName = time().'.'.$request->file('photo')->getClientOriginalExtension();
+            $request->file('photo')->move(public_path('categories'), $imageName);
+            $photo->source = $imageName;
+            $photo->type = "category";
+            $photo->save();
+            $categoria->photo_id = $photo->id;
         }
 
         $categoria->name = $request->name;
         $categoria->save();
+        
         return redirect('/');
 
     }
@@ -118,9 +119,11 @@ class CategoryController extends Controller
     {
         return view('admin.category.edit',[
             'categoria' => Category::findOrFail($id)
+
         ]);
 
-    }
+         
+    } 
 
     /**
      * Update the specified resource in storage.
@@ -130,24 +133,23 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    { 
         $categoria = Category::findOrFail($id);
 
-        if($request->file('icon')){
-            $icono = new Photo;
-            $imageName = time().'.'.$request->file('icon')->getClientOriginalExtension();
-            $request->file('icon')->move(public_path('categories'), $imageName);
-            $icono->source = $imageName;
-            $icono->type = "category";
-            $icono->save();
-            $categoria->icon_id = $icono->id;
+        if($request->file('photo')){
+            $photo = new Photo;
+            $imageName = time().'.'.$request->file('photo')->getClientOriginalExtension();
+            $request->file('photo')->move(public_path('categories'), $imageName);
+            $photo->source = $imageName;
+            $photo->type = "category";
+            $photo->save();
+            $categoria->photo_id = $photo->id;
         }
 
         $categoria->name = $request->name;
-        $categoria->save();
-        $category = Cat::find($id);
-        $category->update($request->all());
-        return redirect('admin/category/' . $category->id);
+        $categoria->update();
+        
+        return redirect('/');
 
        }
 

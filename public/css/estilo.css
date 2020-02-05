@@ -28,3 +28,8 @@
   width: 25% ;
   background-color: aquamarine;
 }
+
+.container-fluid{
+  bottom: 0;
+  position: fixed;
+}

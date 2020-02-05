@@ -55,7 +55,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin/category/add">Nueva Categoria</a>
-                            </li>
+                            </li> 
                             {{-- <li class="nav-item">
                                 <a class="nav-link" href="/admin/role">Roles</a>
                             </li>
@@ -69,9 +69,9 @@
                         @endauth
 
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="/nosotros">Nosotros</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Categorias
@@ -100,9 +100,26 @@
                                 <li class="dropdown-item">
                                     {{$product->name}} 
                                     cantidad
-                                    
+                                   {{--  <form action="/customer/cart/{{$cart->id}}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('delete')
+                                    <button class="btn-delete-out">
+                                        <i class="material-icons"></i>
+                                        Borrar
+                                    </button>
                                     {{$product->quantity}}
+                                </form> --}}
                                 </li>
+                                <form action="/customer/cart/{{$cart->id}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('delete')
+                                <button class="btn-delete-out">
+                                    <i class="material-icons"></i>
+                                    Borrar
+                                </button>
+                                {{$product->quantity}}
+                            </form>
+
                                 @empty
                                     <li class="dropdown-item">No Hay Productos</li>
                                 @endforelse

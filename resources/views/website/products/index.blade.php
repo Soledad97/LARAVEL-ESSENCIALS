@@ -16,7 +16,7 @@
 @if (isset($termino))
     <h1>Se busco producto con el termino {{$termino}}</h1>
 @else
-    <h1>Todos nuestros producto</h1>
+    <h1>Todos nuestros productos</h1>
 @endif
 
 <div class ="contenedor-producto">

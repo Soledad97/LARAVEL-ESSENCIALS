@@ -26,7 +26,7 @@
                             
         @if (Auth::user()->role_id == 0)
         <a href="/admin/product/{{$product->id}}/edit">
-            EDITAR
+            Editar
         </a>
 
     <form action="/admin/product/{{$product->id}}" method="POST" enctype="multipart/form-data">
@@ -36,7 +36,7 @@
     </form>
 
 
-        @endif
+       
 
         @if (Auth::user()->role_id == 1)
         
@@ -45,7 +45,7 @@
             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
             <input type="hidden" name="product_id" value="{{$product->id}}">
             <input type="hidden" name="qty" value="1">
-            <button type="submit" class="btn btn-sm btn-outline-success">Agregar</button>
+            <button type="submit" class="btn btn-sm btn-outline-success">Agregar al carrito</button>
           </form>
 
 
