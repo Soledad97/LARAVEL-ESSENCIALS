@@ -110,14 +110,14 @@
                                     {{$product->quantity}}
                                 </form> --}}
                                 </li>
-                                <form action="/customer/cart/{{$cart->id}}" method="POST" enctype="multipart/form-data">
+                                <form action="{{url('/customer/cart/'.$product->id)}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('delete')
                                 <button class="btn-delete-out">
                                     <i class="material-icons"></i>
                                     Borrar
                                 </button>
-                                {{$product->quantity}}
+                               {{--  {{$product->quantity}} --}}
                             </form>
 
                                 @empty

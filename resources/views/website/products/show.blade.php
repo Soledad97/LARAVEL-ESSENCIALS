@@ -32,7 +32,7 @@
     <form action="/admin/product/{{$product->id}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('delete')
-        <button type="submit" class="btn btn-sm btn-outline-dark">Eliminar</button>
+        <button class="btn btn-sm btn-outline-dark">Eliminar</button>
     </form>
 
 

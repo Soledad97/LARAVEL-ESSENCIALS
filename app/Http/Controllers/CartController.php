@@ -100,7 +100,10 @@ class CartController extends Controller
     public function destroy($id)
     {
         $cart = session('cart');
-        $cart = products()->detach($request->get('product_id'));
+        //dd($cart->products()->first());
+        $cart->products()->detach($id);
         session()->put('cart', $cart);
     }
+
+    return redirect()->back();
 }
