@@ -103,7 +103,8 @@ class CartController extends Controller
         //dd($cart->products()->first());
         $cart->products()->detach($id);
         session()->put('cart', $cart);
+        return redirect()->back();
     }
 
-    return redirect()->back();
+  
 }
